@@ -1,6 +1,6 @@
 package com.laba.animal;
 
-public interface Animals {
+public interface Runable {
 
     public void printName(Animal type);
 

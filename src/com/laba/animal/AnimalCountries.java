@@ -30,6 +30,6 @@ public class AnimalCountries implements Geography{
         String name = countries.getCountryName();
         String continent = countries.getCountryDescription();
         System.out.println("The animal is from country: " + name + ".\n" +
-                "This country is in:" + continent + ". ");
+                "This country is in:" + continent + ".");
     }
 }

@@ -1,6 +1,6 @@
 package com.laba.animal;
 
-public class Zoo implements ZooDescription {
+public class Zoo {
     private int counter;
     private String nameZoo;
 
@@ -31,7 +31,6 @@ public class Zoo implements ZooDescription {
         return this.nameZoo;
     }
 
-    @Override
     public void showDescription(Zoo counterAnimals, Zoo nameOfZoo) {
         int count = counterAnimals.getCounter();
         String zooName = nameOfZoo.getNameZoo();

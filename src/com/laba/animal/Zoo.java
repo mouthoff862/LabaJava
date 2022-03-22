@@ -1,26 +1,26 @@
 package com.laba.animal;
 
 public class Zoo {
-    private int counter;
+    private int maxCounterAnimals;
     private String nameZoo;
 
     public Zoo() {
     }
 
-    public Zoo(int getCounter) {
-        this.counter = getCounter;
+    public Zoo(int maxCounterAnimals) {
+        this.maxCounterAnimals = maxCounterAnimals;
     }
 
     public Zoo(String nameZoo) {
         this.nameZoo = nameZoo;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
+    public void setCounter(int maxCounterAnimals) {
+        this.maxCounterAnimals = maxCounterAnimals;
     }
 
-    public int getCounter() {
-        return counter;
+    public int getMaxCounterAnimals() {
+        return maxCounterAnimals;
     }
 
     public void setNameZoo(String nameZoo) {
@@ -28,11 +28,11 @@ public class Zoo {
     }
 
     public String getNameZoo() {
-        return this.nameZoo;
+        return nameZoo;
     }
 
     public void showDescription(Zoo counterAnimals, Zoo nameOfZoo) {
-        int count = counterAnimals.getCounter();
+        int count = counterAnimals.getMaxCounterAnimals();
         String zooName = nameOfZoo.getNameZoo();
         System.out.println("Name of Zoo: " + zooName + ".\n" + "Maximum number of animals in the zoo: " + count);
     }

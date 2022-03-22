@@ -27,7 +27,7 @@ public class AviaryOne {
     }
 
     public int getMaxHeight() {
-        return this.maxHeight;
+        return maxHeight;
     }
 
     public void setMaxWidth(int maxWidth) {
@@ -35,6 +35,6 @@ public class AviaryOne {
     }
 
     public int getMaxWidth() {
-        return this.maxWidth;
+        return maxWidth;
     }
 }

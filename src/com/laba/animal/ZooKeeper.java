@@ -1,6 +1,6 @@
 package com.laba.animal;
 
-public class ZooKeeper implements Staff {
+public class ZooKeeper implements IFeed {
     private String name;
     private String surname;
     private int experience;
@@ -16,7 +16,7 @@ public class ZooKeeper implements Staff {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setSurname(String surname) {
@@ -24,7 +24,7 @@ public class ZooKeeper implements Staff {
     }
 
     public String getSurname() {
-        return this.surname;
+        return surname;
     }
 
     public void setExperience(int experience) {
@@ -32,7 +32,7 @@ public class ZooKeeper implements Staff {
     }
 
     public int getExperience() {
-        return this.experience;
+        return experience;
     }
 
     @Override

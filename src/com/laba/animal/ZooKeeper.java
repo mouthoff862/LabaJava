@@ -37,7 +37,7 @@ public class ZooKeeper implements IFeed {
 
     @Override
     public void printDuties() {
-        System.out.println("Zookeepers duties: ");
+        System.out.println("Zookeeper feed");
     }
 
     public void move(ZooKeeper zooKeeper, AviaryOne firstAviary, AviaryOne secondAviary) {

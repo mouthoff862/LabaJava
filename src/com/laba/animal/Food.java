@@ -19,7 +19,7 @@ public class Food implements FoodDescription {
     }
 
     public String getFoodName() {
-        return this.foodName;
+        return foodName;
     }
 
     public void setMaxWeight(int maxWeight) {
@@ -27,7 +27,7 @@ public class Food implements FoodDescription {
     }
 
     public int getMaxWeight() {
-        return this.maxWeight;
+        return maxWeight;
     }
 
     public void setColor(String color) {
@@ -35,16 +35,7 @@ public class Food implements FoodDescription {
     }
 
     public String getColor() {
-        return this.color;
+        return color;
     }
 
-    @Override
-    public void foodDesc(Food food) {
-        String meal = food.getFoodName();
-        int kg = food.getMaxWeight();
-        String foodColor = food.getColor();
-        System.out.println("Food: " + meal + ".\n" +
-                "Weight: " + kg + ".\n" +
-                "Color: " + foodColor + ".");
-    }
 }

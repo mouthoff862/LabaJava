@@ -36,5 +36,4 @@ public class Zoo {
         String zooName = nameOfZoo.getNameZoo();
         System.out.println("Name of Zoo: " + zooName + ".\n" + "Maximum number of animals in the zoo: " + count);
     }
-
 }

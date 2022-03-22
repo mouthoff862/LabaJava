@@ -1,6 +1,6 @@
 package com.laba.animal;
 
-public class Food implements FoodDescription {
+public class Food {
     private String foodName;
     private int maxWeight;
     private String color;

@@ -1,6 +1,6 @@
 package com.laba.animal;
 
-public class AnimalCountries implements Geography{
+public class AnimalCountries {
 
     private String countryName;
     private String countryDescription;
@@ -10,7 +10,7 @@ public class AnimalCountries implements Geography{
     }
 
     public String getCountryName() {
-        return this.countryName;
+        return countryName;
     }
 
     public void setCountryName(String countryName) {
@@ -18,18 +18,11 @@ public class AnimalCountries implements Geography{
     }
 
     public String getCountryDescription() {
-        return this.countryDescription;
+        return countryDescription;
     }
 
     public void setCountryDescription(String countryDescription) {
         this.countryDescription = countryDescription;
     }
 
-    @Override
-    public void countries(AnimalCountries countries) {
-        String name = countries.getCountryName();
-        String continent = countries.getCountryDescription();
-        System.out.println("The animal is from country: " + name + ".\n" +
-                "This country is in:" + continent + ".");
-    }
 }

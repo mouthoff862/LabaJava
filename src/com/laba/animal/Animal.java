@@ -1,6 +1,6 @@
 package com.laba.animal;
 
-public abstract class Animal implements Animals {
+public abstract class Animal {
     private String animalType;
     private int age;
     private int maxWeight;
@@ -20,7 +20,7 @@ public abstract class Animal implements Animals {
     }
 
     public String getAnimalType() {
-        return this.animalType;
+        return animalType;
     }
 
     public void setAge(int age) {
@@ -28,7 +28,7 @@ public abstract class Animal implements Animals {
     }
 
     public int getAge() {
-        return this.age;
+        return age;
     }
 
     public void setMaxWeight(int maxWeight) {
@@ -36,7 +36,7 @@ public abstract class Animal implements Animals {
     }
 
     public int getMaxWeight() {
-        return this.maxWeight;
+        return maxWeight;
     }
 
     public void setCountry(String country) {
@@ -44,7 +44,7 @@ public abstract class Animal implements Animals {
     }
 
     public String getCountry() {
-        return this.country;
+        return country;
     }
 
     public void setMaxSpeed(int maxSpeed) {
@@ -52,7 +52,7 @@ public abstract class Animal implements Animals {
     }
 
     public int getMaxSpeed() {
-        return this.maxSpeed;
+        return maxSpeed;
     }
 
 }

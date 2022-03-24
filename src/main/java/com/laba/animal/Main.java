@@ -3,8 +3,13 @@ package main.java.com.laba.animal;
 
 import main.java.com.laba.exceptions.CounterException;
 import main.java.com.laba.exceptions.AnimalNotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
+
+    private final static Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
 
         Lion lion = new Lion("Lion", 14, 150, "Africa", 80);
@@ -15,17 +20,20 @@ public class Main {
         AviaryOne avi = new AviaryOne("Zoo");
         avi.count(49);
 
-        Zoo zoo = new Zoo();
-        zoo.printCount(10);
-        //zoo.nameOfZoo();
-
-        System.out.println(lion.hashCode());
-
-        Zebra.showDescription();
-
         ZooKeeper max = new ZooKeeper("Alex", "Peter", 10);
         //max.printDuties();
         max.keeperExperience();
+
+        Zoo zooOne = new Zoo();
+        zooOne.printCount(10);
+        //zoo.nameOfZoo();
+
+        Zoo zooTwo = new Zoo();
+        zooTwo.nameOfZoo("Animal planet");
+
+        LOGGER.info(lion.hashCode());
+
+        Zebra.showDescription();
 
         ZooKeeper alex = new ZooKeeper("Alex", "Peter", 10);
         AviaryOne firstAviary = new AviaryOne("first aviary");
@@ -37,8 +45,8 @@ public class Main {
         Food meat = new Food("meat");
         petr.feeding(petr, grass, meat);
 
-        Zoo zoo1 = new Zoo(11, "Zoo");
-        zoo1.showDescription(zoo1, zoo1);
+        Zoo zooName = new Zoo(11, "Zoo");
+        zooName.showDescription(zooName, zooName);
     }
 
 

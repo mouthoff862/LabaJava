@@ -62,7 +62,7 @@ public class Zoo {
     public void nameOfZoo(String nameZoo) {
         try {
             setNameZoo(nameZoo);
-            LOGGER.info("Name of zoo: " + getNameZoo());
+            LOGGER.info("Name of zoo: " + nameZoo);
         } catch (EmptyLineException e) {
             LOGGER.info(e.getMessage());
         }

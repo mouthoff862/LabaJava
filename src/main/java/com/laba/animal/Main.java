@@ -26,7 +26,6 @@ public class Main {
 
         Zoo zooOne = new Zoo();
         zooOne.printCount(10);
-        //zoo.nameOfZoo();
 
         Zoo zooTwo = new Zoo();
         zooTwo.nameOfZoo("Animal planet");

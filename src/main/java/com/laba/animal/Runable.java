@@ -1,7 +1,7 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
 
 public interface Runable {
 
-    public void run();
+    void run();
 
 }

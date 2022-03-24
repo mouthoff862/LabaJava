@@ -1,6 +1,10 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Dolphin extends Carnivores implements Swimable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Dolphin.class);
 
     public Dolphin(String animalType, int age, int maxWeight, String country, int maxSpeed) {
         super(animalType, age, maxWeight, country, maxSpeed);
@@ -8,19 +12,19 @@ public class Dolphin extends Carnivores implements Swimable {
 
     @Override
     public void swim() {
-        System.out.println("Dolphin can swim!");
+        LOGGER.info("Dolphin can swim!");
     }
 
     @Override
     public void printName(Animal type) {
         String dolphin = type.getAnimalType();
-        System.out.println(dolphin + " - description: ");
+        LOGGER.info(dolphin + " - description: ");
     }
 
     @Override
     public void showAge(Animal age) {
         int old = age.getAge();
-        System.out.println("This animal can live up to " + old + " years.");
+        LOGGER.info("This animal can live up to " + old + " years.");
     }
 
     @Override

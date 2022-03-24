@@ -1,5 +1,8 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
 
+
+import main.java.com.laba.exceptions.CounterException;
+import main.java.com.laba.exceptions.AnimalNotFoundException;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,14 +10,22 @@ public class Main {
         Lion lion = new Lion("Lion", 14, 150, "Africa", 80);
         // lion.printName(lion);
         // lion.lionDescription();
-        System.out.println(lion.equals(lion));
+        lion.setLionExc();
+
+        AviaryOne avi = new AviaryOne("Zoo");
+        avi.count(49);
+
+        Zoo zoo = new Zoo();
+        zoo.printCount(10);
+        //zoo.nameOfZoo();
 
         System.out.println(lion.hashCode());
 
         Zebra.showDescription();
 
         ZooKeeper max = new ZooKeeper("Alex", "Peter", 10);
-        max.printDuties();
+        //max.printDuties();
+        max.keeperExperience();
 
         ZooKeeper alex = new ZooKeeper("Alex", "Peter", 10);
         AviaryOne firstAviary = new AviaryOne("first aviary");
@@ -25,5 +36,10 @@ public class Main {
         Food grass = new Food("grass");
         Food meat = new Food("meat");
         petr.feeding(petr, grass, meat);
+
+        Zoo zoo1 = new Zoo(11, "Zoo");
+        zoo1.showDescription(zoo1, zoo1);
     }
+
+
 }

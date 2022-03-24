@@ -1,6 +1,13 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
+
+import main.java.com.laba.exceptions.BooleanException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ZooKeeper implements IFeed {
+
+    private final static Logger LOGGER = LogManager.getLogger(ZooKeeper.class);
+
     private String name;
     private String surname;
     private int experience;
@@ -27,9 +34,6 @@ public class ZooKeeper implements IFeed {
         return surname;
     }
 
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
 
     public int getExperience() {
         return experience;
@@ -44,14 +48,30 @@ public class ZooKeeper implements IFeed {
         String name = zooKeeper.getName();
         String firstAviaryName = firstAviary.getNameAviary();
         String secondAviaryName = secondAviary.getNameAviary();
-        System.out.println("Zookeeper " + name + " moves animals from " + firstAviaryName + " to " + secondAviaryName);
+        LOGGER.info("Zookeeper " + name + " moves animals from " + firstAviaryName + " to " + secondAviaryName);
     }
 
     public void feeding(ZooKeeper zooKeeper, Food food, Food meal) {
         String name = zooKeeper.getName();
         String grass = food.getFoodName();
         String meat = meal.getFoodName();
-        System.out.println(name + " feeds all animals twice a day with " + grass + " and " + meat);
+        LOGGER.info(name + " feeds all animals twice a day with " + grass + " and " + meat);
+    }
+
+    public void setExperience(int experience) throws BooleanException {
+        if (experience == 0) {
+            throw new BooleanException("Zookeeper doesn't have work experience");
+        }
+        this.experience = experience;
+    }
+
+    public void keeperExperience() {
+        try {
+            setExperience(20);
+            LOGGER.info("Zookeeper's work experience: " + getExperience() );
+        } catch (BooleanException e) {
+            LOGGER.info(e.getMessage());
+        }
     }
 
 }

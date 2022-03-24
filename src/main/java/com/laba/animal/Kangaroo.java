@@ -1,6 +1,11 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Kangaroo extends Herbivores implements Jumpable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Kangaroo.class);
 
     public Kangaroo(String animalType, int age, int maxWeight, String country, int maxSpeed) {
         super(animalType, age, maxWeight, country, maxSpeed);
@@ -9,13 +14,13 @@ public class Kangaroo extends Herbivores implements Jumpable {
     @Override
     public void printName(Animal type) {
         String kangaroo = type.getAnimalType();
-        System.out.println(kangaroo + " - description: ");
+        LOGGER.info(kangaroo + " - description: ");
     }
 
     @Override
     public void showAge(Animal age) {
         int old = age.getAge();
-        System.out.println("This animal can live up to " + old + " years.");
+        LOGGER.info("This animal can live up to " + old + " years.");
     }
 
     @Override
@@ -26,6 +31,6 @@ public class Kangaroo extends Herbivores implements Jumpable {
 
     @Override
     public void jump() {
-        System.out.println("Kangaroo can jump!");
+        LOGGER.info("Kangaroo can jump!");
     }
 }

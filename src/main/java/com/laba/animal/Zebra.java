@@ -1,6 +1,11 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Zebra extends Herbivores implements Runable {
+
+    private final static Logger LOGGER = LogManager.getLogger(Zebra.class);
 
     private static String description;
 
@@ -13,19 +18,19 @@ public class Zebra extends Herbivores implements Runable {
     }
 
     public static void showDescription() {
-        System.out.println(description);
+        LOGGER.info(description);
     }
 
     @Override
     public void printName(Animal type) {
         String zebra = type.getAnimalType();
-        System.out.println(zebra + " - description: ");
+        LOGGER.info(zebra + " - description: ");
     }
 
     @Override
     public void showAge(Animal age) {
         int old = age.getAge();
-        System.out.println("This animal can live up to " + old + " years.");
+        LOGGER.info("This animal can live up to " + old + " years.");
     }
 
     @Override
@@ -36,7 +41,7 @@ public class Zebra extends Herbivores implements Runable {
 
     @Override
     public void run() {
-        System.out.println("Zebra can run!");
+        LOGGER.info("Zebra can run!");
     }
 
 }

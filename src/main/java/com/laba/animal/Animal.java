@@ -1,4 +1,4 @@
-package com.laba.animal;
+package main.java.com.laba.animal;
 
 public abstract class Animal {
     private String animalType;

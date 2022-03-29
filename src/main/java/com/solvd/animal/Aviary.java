@@ -1,28 +1,25 @@
-package main.java.com.laba.animal;
+package main.java.com.solvd.animal;
 
-import main.java.com.laba.exceptions.NumCheckException;
+import main.java.com.solvd.exceptions.NumCheckException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class AviaryOne {
+public class Aviary {
 
-    private final static Logger LOGGER = LogManager.getLogger(AviaryOne.class);
+    private final static Logger LOGGER = LogManager.getLogger(Aviary.class);
 
     private String nameAviary;
     private int maxHeight;
     private int maxWidth;
-    private int counterOfAviaries;
+    private int counterOfAviaries = 20;
 
-    public AviaryOne(String nameAviary) {
+    public Aviary(String nameAviary) {
         this.nameAviary = nameAviary;
     }
 
-    public AviaryOne(int maxHeight, int maxWidth) {
+    public Aviary(int maxHeight, int maxWidth) {
         this.maxHeight = maxHeight;
         this.maxWidth = maxWidth;
-    }
-
-    public static void massiveAviaries(int i, int i1, int i2, int i3) {
     }
 
     public void setNameAviary(String nameAviary) {
@@ -53,19 +50,16 @@ public class AviaryOne {
         return counterOfAviaries;
     }
 
-    public void setCounterOfAviaries(int counterOfAviaries) throws NumCheckException {
+    public void setCounterOfAviaries(int counterOfAviaries) {
         if (counterOfAviaries <= 0 && counterOfAviaries >= 50) {
-            throw new NumCheckException("Something went wrong");
+            try {
+                throw new NumCheckException("Something went wrong");
+            } catch (NumCheckException e) {
+                LOGGER.info(e.getMessage());
+                this.counterOfAviaries = 20;
+            }
         }
         this.counterOfAviaries = counterOfAviaries;
     }
 
-    public void count(int a) {
-        try {
-            setCounterOfAviaries(counterOfAviaries);
-            LOGGER.info("You entered the correct number: " + a);
-        } catch (NumCheckException e) {
-            LOGGER.info(e.getMessage());
-        }
-    }
 }

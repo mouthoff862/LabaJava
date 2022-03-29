@@ -1,6 +1,7 @@
-package main.java.com.laba.animal;
+package main.java.com.solvd.animal;
 
-import main.java.com.laba.exceptions.AnimalNotFoundException;
+import main.java.com.solvd.exceptions.AnimalNotFoundException;
+import main.java.com.solvd.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +11,6 @@ public final class Lion extends Carnivores implements Runable {
 
     private final static String LION_NAME = "King Leon";
     private final static String FAVOURITE_FOOD = "meat";
-    private String typeOfAnimal;
 
     public Lion(String animalType, int age, int maxWeight, String country, int maxSpeed) {
         super(animalType, age, maxWeight, country, maxSpeed);
@@ -25,16 +25,17 @@ public final class Lion extends Carnivores implements Runable {
         return ("This animal is a " + getAnimalType() + ".\n" + "He is from " + getCountry() + ".\n" + "Maximum adult weight can be up to " + getMaxWeight() + " kg.");
     }
 
+
     @Override
-    public void printName(Animal type) {
-        String lion = type.getAnimalType();
+    public void printName() {
+        String lion = getAnimalType();
         LOGGER.info(lion + " - description: ");
     }
 
     @Override
-    public void showAge(Animal age) {
-        int old = age.getAge();
-        LOGGER.info("This animal can live up to " + old + " years.");
+    public void showAge() {
+        int maxAge = getAge();
+        LOGGER.info("This animal can live up to " + maxAge + " years.");
     }
 
     @Override
@@ -56,32 +57,13 @@ public final class Lion extends Carnivores implements Runable {
         return true;
     }
 
+
     @Override
     public int hashCode() {
         final int hash = 31;
         int result = 1;
         result = result * hash + ((FAVOURITE_FOOD == null) ? 0 : FAVOURITE_FOOD.hashCode());
         return result;
-    }
-
-    public String getTypeOfAnimal() {
-        return typeOfAnimal;
-    }
-
-    public void setTypeOfAnimal(String typeOfAnimal) throws AnimalNotFoundException {
-        if (typeOfAnimal == null) {
-            throw new AnimalNotFoundException("Animal was not found");
-        }
-        this.typeOfAnimal = typeOfAnimal;
-    }
-
-    public void setLionExc() {
-        try {
-            setTypeOfAnimal("Lion");
-            LOGGER.info("Animal was found");
-        } catch (AnimalNotFoundException e) {
-            LOGGER.info(e.getMessage());
-        }
     }
 
 }

@@ -1,10 +1,11 @@
-package main.java.com.laba.animal;
+package main.java.com.solvd.animal;
 
-import main.java.com.laba.exceptions.CounterException;
-import main.java.com.laba.exceptions.EmptyLineException;
+import main.java.com.solvd.exceptions.CounterException;
+import main.java.com.solvd.exceptions.EmptyLineException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 
 public class Zoo {
 
@@ -38,34 +39,24 @@ public class Zoo {
 
     public void setNameZoo(String nameZoo) throws EmptyLineException {
         if (nameZoo == null) {
-            throw new EmptyLineException("Print some words");
+            try {
+                throw new EmptyLineException("Print some words");
+            } catch (EmptyLineException e) {
+                LOGGER.info(e.getMessage());
+            }
         }
         this.nameZoo = nameZoo;
     }
 
     public void setMaxCounterAnimals(int maxCounterAnimals) throws CounterException {
         if (maxCounterAnimals == 0) {
-            throw new CounterException("It was NaN or zero");
+            try {
+                throw new CounterException("It was NaN or zero");
+            } catch (CounterException e) {
+                LOGGER.info(e.getMessage());
+            }
         }
         this.maxCounterAnimals = maxCounterAnimals;
-    }
-
-    public void printCount(int maxCounterAnimals) {
-        try {
-            setMaxCounterAnimals(maxCounterAnimals);
-            LOGGER.info("Max counter animals " + getMaxCounterAnimals());
-        } catch (CounterException e) {
-            LOGGER.info(e.getMessage());
-        }
-    }
-
-    public void nameOfZoo(String nameZoo) {
-        try {
-            setNameZoo(nameZoo);
-            LOGGER.info("Name of zoo: " + nameZoo);
-        } catch (EmptyLineException e) {
-            LOGGER.info(e.getMessage());
-        }
     }
 
 }

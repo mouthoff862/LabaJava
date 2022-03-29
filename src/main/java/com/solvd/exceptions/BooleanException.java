@@ -1,4 +1,4 @@
-package main.java.com.laba.exceptions;
+package main.java.com.solvd.exceptions;
 
 public class BooleanException extends Exception{
 
@@ -9,10 +9,6 @@ public class BooleanException extends Exception{
 
     public BooleanException(String message) {
         super(message);
-    }
-
-    public BooleanException(String message, Throwable cause) {
-        super(message, cause);
     }
 
 }

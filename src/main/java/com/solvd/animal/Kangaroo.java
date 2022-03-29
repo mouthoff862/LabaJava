@@ -1,5 +1,6 @@
-package main.java.com.laba.animal;
+package main.java.com.solvd.animal;
 
+import main.java.com.solvd.interfaces.Jumpable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,14 +13,14 @@ public class Kangaroo extends Herbivores implements Jumpable {
     }
 
     @Override
-    public void printName(Animal type) {
-        String kangaroo = type.getAnimalType();
+    public void printName() {
+        String kangaroo = getAnimalType();
         LOGGER.info(kangaroo + " - description: ");
     }
 
     @Override
-    public void showAge(Animal age) {
-        int old = age.getAge();
+    public void showAge() {
+        int old = getAge();
         LOGGER.info("This animal can live up to " + old + " years.");
     }
 

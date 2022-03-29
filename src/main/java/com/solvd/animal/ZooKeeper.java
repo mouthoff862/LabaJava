@@ -1,6 +1,7 @@
-package main.java.com.laba.animal;
+package main.java.com.solvd.animal;
 
-import main.java.com.laba.exceptions.BooleanException;
+import main.java.com.solvd.exceptions.BooleanException;
+import main.java.com.solvd.interfaces.IFeed;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +45,7 @@ public class ZooKeeper implements IFeed {
         System.out.println("Zookeeper feed");
     }
 
-    public void move(ZooKeeper zooKeeper, AviaryOne firstAviary, AviaryOne secondAviary) {
+    public void move(ZooKeeper zooKeeper, Aviary firstAviary, Aviary secondAviary) {
         String name = zooKeeper.getName();
         String firstAviaryName = firstAviary.getNameAviary();
         String secondAviaryName = secondAviary.getNameAviary();
@@ -60,18 +61,13 @@ public class ZooKeeper implements IFeed {
 
     public void setExperience(int experience) throws BooleanException {
         if (experience == 0) {
-            throw new BooleanException("Zookeeper doesn't have work experience");
+            try {
+                throw new BooleanException("Zookeeper doesn't have work experience");
+            } catch (BooleanException e) {
+                LOGGER.info(e.getMessage());
+            }
         }
         this.experience = experience;
-    }
-
-    public void keeperExperience() {
-        try {
-            setExperience(20);
-            LOGGER.info("Zookeeper's work experience: " + getExperience() );
-        } catch (BooleanException e) {
-            LOGGER.info(e.getMessage());
-        }
     }
 
 }

@@ -1,0 +1,33 @@
+2022-03-31 14:08:45,871 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-31 14:08:45,880 INFO m.j.c.s.a.Zebra [main] Zebra is from Africa.
+2022-03-31 14:08:45,882 INFO m.j.c.s.a.Main [main] Numbers of aviaries: 1908995764
+2022-03-31 14:08:45,883 INFO m.j.c.s.a.Main [main] Numbers after sorting: [main.java.com.solvd.animal.Aviary@212b5695, main.java.com.solvd.animal.Aviary@446293d, main.java.com.solvd.animal.Aviary@69997e9d]
+2022-03-31 14:08:45,884 INFO m.j.c.s.a.Main [main] true
+2022-03-31 14:08:45,885 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-31 14:08:45,886 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-31 14:08:45,889 INFO m.j.c.s.a.Main [main] 1
+2022-03-31 14:08:45,900 INFO m.j.c.s.a.Main [main] Kangaroos: Kangaroo David. Max age:  15. Max weight:  80
+2022-03-31 14:08:45,902 INFO m.j.c.s.a.Main [main] Kangaroos: Kangoo. Max age:  5. Max weight:  40
+2022-03-31 14:08:45,903 INFO m.j.c.s.a.Main [main] 250
+2022-03-31 14:08:45,904 INFO m.j.c.s.a.Main [main] 300
+2022-03-31 14:08:45,915 INFO m.j.c.s.a.Main [main] All zebras : [This animal is a Zebra Tom.
+He is from Africa.
+Maximum adult weight can be up to 300 kg., This animal is a Zebra Fred.
+He is from Belarus.
+Maximum adult weight can be up to 250 kg., This animal is a Zebra Alex.
+He is from New Zealand.
+Maximum adult weight can be up to 270 kg.]
+2022-03-31 14:08:45,922 INFO m.j.c.s.a.Main [main] Sorted Zebras List by Age : [This animal is a Zebra Alex.
+He is from New Zealand.
+Maximum adult weight can be up to 270 kg., This animal is a Zebra Fred.
+He is from Belarus.
+Maximum adult weight can be up to 250 kg., This animal is a Zebra Tom.
+He is from Africa.
+Maximum adult weight can be up to 300 kg.]
+2022-03-31 14:08:45,925 INFO m.j.c.s.a.Main [main] Sorted Zebras List by Name : [This animal is a Zebra Alex.
+He is from New Zealand.
+Maximum adult weight can be up to 270 kg., This animal is a Zebra Fred.
+He is from Belarus.
+Maximum adult weight can be up to 250 kg., This animal is a Zebra Tom.
+He is from Africa.
+Maximum adult weight can be up to 300 kg.]

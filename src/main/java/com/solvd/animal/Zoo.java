@@ -1,11 +1,9 @@
 package main.java.com.solvd.animal;
 
-import main.java.com.solvd.exceptions.CounterException;
-import main.java.com.solvd.exceptions.EmptyLineException;
+import main.java.com.solvd.animal.exceptions.CounterException;
+import main.java.com.solvd.animal.exceptions.EmptyLineException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.List;
 
 public class Zoo {
 

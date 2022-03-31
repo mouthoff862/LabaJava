@@ -1,8 +1,5 @@
 package main.java.com.solvd.animal;
 
-import main.java.com.solvd.exceptions.BooleanException;
-import main.java.com.solvd.exceptions.CounterException;
-import main.java.com.solvd.exceptions.EmptyLineException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +9,7 @@ public class Main {
 
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws CounterException, BooleanException, EmptyLineException {
+    public static void main(String[] args) {
 
         Lion lion = new Lion("Lion", 14, 150, "Africa", 80);
         // lion.printName(lion);
@@ -21,16 +18,6 @@ public class Main {
 
         Aviary avi = new Aviary("Zoo");
         avi.setCounterOfAviaries(49);
-
-        ZooKeeper max = new ZooKeeper("Alex", "Peter", 10);
-        //max.printDuties();
-        max.setExperience(20);
-
-        Zoo zooOne = new Zoo();
-        zooOne.setMaxCounterAnimals(10);
-
-        Zoo zooTwo = new Zoo();
-        zooTwo.setNameZoo("");
 
         LOGGER.info(lion.hashCode());
 
@@ -41,7 +28,7 @@ public class Main {
         getIntOfAviaries();
         getLionHashSet();
         arrayListOfKangaroos();
-        getListOfOmnivores();
+        getListOfZebras();
         getListOfHerbivores();
 
     }
@@ -55,26 +42,21 @@ public class Main {
         ZooKeeper petr = new ZooKeeper("Alex", "Peter", 10);
         Food grass = new Food("grass");
         Food meat = new Food("meat");
-        petr.feeding(petr, grass, meat);
+        petr.feeding(grass, meat);
 
         Zoo zooName = new Zoo(11, "Zoo");
         zooName.showDescription(zooName, zooName);
     }
 
     private static void getIntOfAviaries() {
-        List<Integer> numbers = new ArrayList<>();
-        numbers.add(3);
-        numbers.add(5);
-        numbers.add(6);
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(4);
+        List<Aviary> numbers = new ArrayList<Aviary>();
 
-        LOGGER.info("Numbers of aviaries: " + numbers);
+        numbers.add(new Aviary(90, 20));
+        numbers.add(new Aviary(40, 50));
+        numbers.add(new Aviary(50, 90));
 
-        Collections.sort(numbers);
-
-        LOGGER.info("Numbers after sorting: " + numbers);
+        LOGGER.info("Numbers of aviaries: " + numbers.size());
+                
     }
 
     private static void arrayListOfKangaroos() {
@@ -101,13 +83,24 @@ public class Main {
         LOGGER.info(lions.size());
     }
 
-    private static void getListOfOmnivores() {
-        List<String> omnivores = new ArrayList<>();
-        omnivores.add("Dolphins");
-        omnivores.add("Pig");
-        omnivores.add("Bear");
+    private static void getListOfZebras() {
+       LinkedList<Zebra> zebras = new LinkedList<>();
 
-        LOGGER.info(omnivores.size());
+       Zebra zebraLittle = new Zebra("Little Zebra", 12, 200, "Africa", 50);
+       Zebra zebraMiddle = new Zebra("Medium Zebra", 14, 250, "Australia", 55);
+       Zebra zebraBig = new Zebra("Big zebra", 15, 300, "Africa", 60);
+
+        zebras.add(zebraLittle);
+        zebras.add(zebraMiddle);
+        zebras.add(zebraBig);
+
+        int i = 240;
+        for (Zebra zebra : zebras) {
+            if (i < zebra.getMaxWeight()) {
+                LOGGER.info(zebra.getMaxWeight());
+            }
+        }
+
     }
 
     private static void getListOfHerbivores() {
@@ -125,7 +118,6 @@ public class Main {
 
         Collections.sort(zebras, Comparator.comparing(Zebra::getAnimalType));
         LOGGER.info("Sorted Zebras List by Name : " + zebras);
-
     }
 }
 

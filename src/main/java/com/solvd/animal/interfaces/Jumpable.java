@@ -1,4 +1,4 @@
-package main.java.com.solvd.interfaces;
+package main.java.com.solvd.animal.interfaces;
 
 public interface Jumpable {
 

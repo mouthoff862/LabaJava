@@ -1,0 +1,16 @@
+2022-03-28 14:14:30,057 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-28 14:14:30,062 INFO m.j.c.s.a.Zebra [main] Zebra is from Africa.
+2022-03-28 14:14:30,067 INFO m.j.c.s.a.ZooKeeper [main] Zookeeper Alex moves animals from first aviary to second aviary
+2022-03-28 14:14:30,070 INFO m.j.c.s.a.ZooKeeper [main] Alex feeds all animals twice a day with grass and meat
+2022-03-28 14:14:30,075 INFO m.j.c.s.a.Zoo [main] Name of Zoo: Zoo.
+Maximum number of animals in the zoo: 11
+2022-03-28 14:14:30,078 INFO m.j.c.s.a.Main [main] Kangaroos: Kangaroo David 15 
+2022-03-28 14:14:30,079 INFO m.j.c.s.a.Main [main] Kangaroos: Kangoo 5 
+2022-03-28 14:14:30,080 INFO m.j.c.s.a.Main [main] Numbers of aviaries: [3, 5, 6, 1, 2, 4]
+2022-03-28 14:14:30,082 INFO m.j.c.s.a.Main [main] Numbers after sorting: [1, 2, 3, 4, 5, 6]
+2022-03-28 14:14:30,083 INFO m.j.c.s.a.Main [main] true
+2022-03-28 14:14:30,084 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-28 14:14:30,085 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-28 14:14:30,085 INFO m.j.c.s.a.Main [main] 1
+2022-03-28 14:14:30,086 INFO m.j.c.s.a.Main [main] Kangaroos: Kangaroo David 15 
+2022-03-28 14:14:30,087 INFO m.j.c.s.a.Main [main] Kangaroos: Kangoo 5 

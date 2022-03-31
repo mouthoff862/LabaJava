@@ -1,0 +1,6 @@
+2022-03-28 13:52:21,275 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-28 13:52:21,280 INFO m.j.c.s.a.Zebra [main] Zebra is from Africa.
+2022-03-28 13:52:21,286 INFO m.j.c.s.a.ZooKeeper [main] Zookeeper Alex moves animals from first aviary to second aviary
+2022-03-28 13:52:21,288 INFO m.j.c.s.a.ZooKeeper [main] Alex feeds all animals twice a day with grass and meat
+2022-03-28 13:52:21,292 INFO m.j.c.s.a.Zoo [main] Name of Zoo: Zoo.
+Maximum number of animals in the zoo: 11

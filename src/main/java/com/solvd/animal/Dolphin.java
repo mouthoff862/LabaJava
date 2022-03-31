@@ -1,5 +1,5 @@
 package main.java.com.solvd.animal;
-import main.java.com.solvd.interfaces.Swimable;
+import main.java.com.solvd.animal.interfaces.Swimable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +24,8 @@ public class Dolphin extends Carnivores implements Swimable {
 
     @Override
     public void showAge() {
-        int old = getAge();
-        LOGGER.info("This animal can live up to " + old + " years.");
+        int maxAge = getAge();
+        LOGGER.info("This animal can live up to " + maxAge + " years.");
     }
 
     @Override

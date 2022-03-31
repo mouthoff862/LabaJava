@@ -1,4 +1,4 @@
-package main.java.com.solvd.linkedlist;
+package main.java.com.solvd.animal.linkedlist;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package main.java.com.solvd.exceptions;
+package main.java.com.solvd.animal.exceptions;
 
 public class AnimalNotFoundException extends Exception {
 

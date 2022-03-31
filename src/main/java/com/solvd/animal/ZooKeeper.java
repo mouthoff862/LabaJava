@@ -1,7 +1,7 @@
 package main.java.com.solvd.animal;
 
-import main.java.com.solvd.exceptions.BooleanException;
-import main.java.com.solvd.interfaces.IFeed;
+import main.java.com.solvd.animal.exceptions.BooleanException;
+import main.java.com.solvd.animal.interfaces.IFeed;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,11 +52,10 @@ public class ZooKeeper implements IFeed {
         LOGGER.info("Zookeeper " + name + " moves animals from " + firstAviaryName + " to " + secondAviaryName);
     }
 
-    public void feeding(ZooKeeper zooKeeper, Food food, Food meal) {
-        String name = zooKeeper.getName();
+    public void feeding(Food food, Food meal) {
         String grass = food.getFoodName();
         String meat = meal.getFoodName();
-        LOGGER.info(name + " feeds all animals twice a day with " + grass + " and " + meat);
+        LOGGER.info(getName() + " feeds all animals twice a day with " + grass + " and " + meat);
     }
 
     public void setExperience(int experience) throws BooleanException {

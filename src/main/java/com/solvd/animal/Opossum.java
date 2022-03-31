@@ -1,6 +1,6 @@
 package main.java.com.solvd.animal;
 
-import main.java.com.solvd.interfaces.Runable;
+import main.java.com.solvd.animal.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

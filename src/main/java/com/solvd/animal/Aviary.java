@@ -1,6 +1,6 @@
 package main.java.com.solvd.animal;
 
-import main.java.com.solvd.exceptions.NumCheckException;
+import main.java.com.solvd.animal.exceptions.NumCheckException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

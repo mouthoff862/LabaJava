@@ -1,0 +1,31 @@
+2022-03-31 13:47:20,219 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-31 13:47:20,226 INFO m.j.c.s.a.Zebra [main] Zebra is from Africa.
+2022-03-31 13:47:20,227 INFO m.j.c.s.a.Main [main] Numbers of aviaries: [main.java.com.solvd.animal.Aviary@212b5695, main.java.com.solvd.animal.Aviary@212b5695, main.java.com.solvd.animal.Aviary@212b5695]
+2022-03-31 13:47:20,228 INFO m.j.c.s.a.Main [main] Numbers after sorting: [main.java.com.solvd.animal.Aviary@212b5695, main.java.com.solvd.animal.Aviary@212b5695, main.java.com.solvd.animal.Aviary@212b5695]
+2022-03-31 13:47:20,229 INFO m.j.c.s.a.Main [main] true
+2022-03-31 13:47:20,230 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-31 13:47:20,231 INFO m.j.c.s.a.Main [main] 3347434
+2022-03-31 13:47:20,232 INFO m.j.c.s.a.Main [main] 1
+2022-03-31 13:47:20,249 INFO m.j.c.s.a.Main [main] Kangaroos: Kangaroo David. Max age:  15. Max weight:  80
+2022-03-31 13:47:20,250 INFO m.j.c.s.a.Main [main] Kangaroos: Kangoo. Max age:  5. Max weight:  40
+2022-03-31 13:47:20,260 INFO m.j.c.s.a.Main [main] All zebras : [This animal is a Zebra Tom.
+He is from Africa.
+Maximum adult weight can be up to 300 kg., This animal is a Zebra Fred.
+He is from Belarus.
+Maximum adult weight can be up to 250 kg., This animal is a Zebra Alex.
+He is from New Zealand.
+Maximum adult weight can be up to 270 kg.]
+2022-03-31 13:47:20,266 INFO m.j.c.s.a.Main [main] Sorted Zebras List by Age : [This animal is a Zebra Alex.
+He is from New Zealand.
+Maximum adult weight can be up to 270 kg., This animal is a Zebra Fred.
+He is from Belarus.
+Maximum adult weight can be up to 250 kg., This animal is a Zebra Tom.
+He is from Africa.
+Maximum adult weight can be up to 300 kg.]
+2022-03-31 13:47:20,268 INFO m.j.c.s.a.Main [main] Sorted Zebras List by Name : [This animal is a Zebra Alex.
+He is from New Zealand.
+Maximum adult weight can be up to 270 kg., This animal is a Zebra Fred.
+He is from Belarus.
+Maximum adult weight can be up to 250 kg., This animal is a Zebra Tom.
+He is from Africa.
+Maximum adult weight can be up to 300 kg.]

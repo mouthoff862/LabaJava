@@ -1,4 +1,4 @@
-package main.java.com.solvd.animal;
+package main.java.com.solvd.animals;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

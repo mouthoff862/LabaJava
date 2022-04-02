@@ -1,4 +1,4 @@
-package main.java.com.solvd.animal.interfaces;
+package main.java.com.solvd.animals.interfaces;
 
 public interface Runable {
 

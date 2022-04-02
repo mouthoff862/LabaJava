@@ -1,4 +1,4 @@
-package main.java.com.solvd.animal.exceptions;
+package main.java.com.solvd.animals.exceptions;
 
 public class CounterException extends Exception {
 

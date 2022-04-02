@@ -1,4 +1,4 @@
-package main.java.com.solvd.animal;
+package main.java.com.solvd.animals;
 
 public abstract class Animals {
 

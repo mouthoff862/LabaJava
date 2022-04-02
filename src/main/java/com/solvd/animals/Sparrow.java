@@ -1,6 +1,6 @@
 package main.java.com.solvd.animals;
 
-import main.java.com.solvd.animal.interfaces.Flyable;
+import main.java.com.solvd.animals.interfaces.Flyable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

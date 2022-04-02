@@ -1,7 +1,7 @@
 package main.java.com.solvd.animals;
 
-import main.java.com.solvd.animal.exceptions.BooleanException;
-import main.java.com.solvd.animal.interfaces.IFeed;
+import main.java.com.solvd.animals.exceptions.BooleanException;
+import main.java.com.solvd.animals.interfaces.IFeed;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

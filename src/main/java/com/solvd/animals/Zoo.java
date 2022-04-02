@@ -1,7 +1,7 @@
 package main.java.com.solvd.animals;
 
-import main.java.com.solvd.animal.exceptions.CounterException;
-import main.java.com.solvd.animal.exceptions.EmptyLineException;
+import main.java.com.solvd.animals.exceptions.CounterException;
+import main.java.com.solvd.animals.exceptions.EmptyLineException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

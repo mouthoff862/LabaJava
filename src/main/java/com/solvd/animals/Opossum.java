@@ -4,23 +4,23 @@ import main.java.com.solvd.animal.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Opossum extends Omnivores implements Runable {
+public class Opossum extends Animals implements Runable {
 
     private final static Logger LOGGER = LogManager.getLogger(Opossum.class);
 
-    public Opossum(String animalType, int age, int maxWeight, String country, int maxSpeed) {
-        super(animalType, age, maxWeight, country, maxSpeed);
+    public Opossum(String animalType, int maxAge, int maxWeight, String country, int maxSpeed) {
+        super(animalType, maxAge, maxWeight, country, maxSpeed);
     }
 
     @Override
-    public void printName() {
+    public void printAnimalType() {
         String opossum = getAnimalType();
         LOGGER.info(opossum + " - description: ");
     }
 
     @Override
-    public void showAge() {
-        int maxAge = getAge();
+    public void showMaxAge() {
+        int maxAge = getMaxAge();
         LOGGER.info("This animal can live up to " + maxAge + " years.");
     }
 
@@ -43,7 +43,7 @@ public class Opossum extends Omnivores implements Runable {
 
         Opossum opossum = (Opossum) o;
 
-        if (getAge() != opossum.getAge()) return false;
+        if (getMaxAge() != opossum.getMaxAge()) return false;
         if (getMaxWeight() != opossum.getMaxWeight()) return false;
         if (getMaxSpeed() != opossum.getMaxSpeed()) return false;
         if (getAnimalType() != null ? !getAnimalType().equals(opossum.getAnimalType()) : opossum.getAnimalType() != null)
@@ -54,7 +54,7 @@ public class Opossum extends Omnivores implements Runable {
     @Override
     public int hashCode() {
         int result = getAnimalType() != null ? getAnimalType().hashCode() : 0;
-        result = 31 * result + getAge();
+        result = 31 * result + getMaxAge();
         result = 31 * result + getMaxWeight();
         result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
         result = 31 * result + getMaxSpeed();

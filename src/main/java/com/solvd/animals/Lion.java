@@ -4,15 +4,15 @@ import main.java.com.solvd.animal.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class Lion extends Carnivores implements Runable {
+public final class Lion extends Animals implements Runable {
 
     private final static Logger LOGGER = LogManager.getLogger(Lion.class);
 
     private final static String LION_NAME = "King Leon";
     private final static String FAVOURITE_FOOD = "meat";
 
-    public Lion(String animalType, int age, int maxWeight, String country, int maxSpeed) {
-        super(animalType, age, maxWeight, country, maxSpeed);
+    public Lion(String animalType, int maxAge, int maxWeight, String country, int maxSpeed) {
+        super(animalType, maxAge, maxWeight, country, maxSpeed);
     }
 
     public final void lionDescription() {
@@ -26,14 +26,14 @@ public final class Lion extends Carnivores implements Runable {
 
 
     @Override
-    public void printName() {
+    public void printAnimalType() {
         String lion = getAnimalType();
         LOGGER.info(lion + " - description: ");
     }
 
     @Override
-    public void showAge() {
-        int maxAge = getAge();
+    public void showMaxAge() {
+        int maxAge = getMaxAge();
         LOGGER.info("This animal can live up to " + maxAge + " years.");
     }
 
@@ -55,7 +55,6 @@ public final class Lion extends Carnivores implements Runable {
         }
         return true;
     }
-
 
     @Override
     public int hashCode() {

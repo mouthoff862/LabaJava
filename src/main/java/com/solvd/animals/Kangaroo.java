@@ -4,23 +4,23 @@ import main.java.com.solvd.animal.interfaces.Jumpable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Kangaroo extends Herbivores implements Jumpable {
+public class Kangaroo extends Animals implements Jumpable {
 
     private final static Logger LOGGER = LogManager.getLogger(Kangaroo.class);
 
-    public Kangaroo(String animalType, int age, int maxWeight, String country, int maxSpeed) {
-        super(animalType, age, maxWeight, country, maxSpeed);
+    public Kangaroo(String animalType, int maxAge, int maxWeight, String country, int maxSpeed) {
+        super(animalType, maxAge, maxWeight, country, maxSpeed);
     }
 
     @Override
-    public void printName() {
+    public void printAnimalType() {
         String kangaroo = getAnimalType();
         LOGGER.info(kangaroo + " - description: ");
     }
 
     @Override
-    public void showAge() {
-        int old = getAge();
+    public void showMaxAge() {
+        int old = getMaxAge();
         LOGGER.info("This animal can live up to " + old + " years.");
     }
 

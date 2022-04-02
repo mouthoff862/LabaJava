@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         Lion lion = new Lion("Lion", 14, 150, "Africa", 80);
-        // lion.printName(lion);
+        // lion.printAnimalType(lion);
         // lion.lionDescription();
         //lion.setLionExc();
 
@@ -65,7 +65,7 @@ public class Main {
         arrayOfkangaroos.add(new Kangaroo("Kangoo", 5, 40, "Australia", 30));
 
         for (Kangaroo kangaroo : arrayOfkangaroos) {
-            LOGGER.info("Kangaroos: " + kangaroo.getAnimalType() + ". Max age:  " + kangaroo.getAge() + ". Max weight:  "+ kangaroo.getMaxWeight());
+            LOGGER.info("Kangaroos: " + kangaroo.getAnimalType() + ". Max age:  " + kangaroo.getMaxAge() + ". Max weight:  "+ kangaroo.getMaxWeight());
         }
     }
 
@@ -112,7 +112,7 @@ public class Main {
 
         LOGGER.info("All zebras : " + zebras);
 
-        zebras.sort(Comparator.comparingInt(Zebra::getAge));
+        zebras.sort(Comparator.comparingInt(Zebra::getMaxAge));
 
         LOGGER.info("Sorted Zebras List by Age : " + zebras);
 

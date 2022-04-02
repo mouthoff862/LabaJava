@@ -58,7 +58,7 @@ public class ZooKeeper implements IFeed {
         LOGGER.info(getName() + " feeds all animals twice a day with " + grass + " and " + meat);
     }
 
-    public void setExperience(int experience) throws BooleanException {
+    public void setExperience(int experience) {
         if (experience == 0) {
             try {
                 throw new BooleanException("Zookeeper doesn't have work experience");

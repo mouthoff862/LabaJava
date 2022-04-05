@@ -1,18 +1,29 @@
-package main.java.com.solvd.animals;
+package com.solvd.animals.animal;
 
-import main.java.com.solvd.animals.interfaces.Runable;
+import com.solvd.animals.exceptions.AnimalNotFoundException;
+import com.solvd.animals.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public final class Lion extends Animals implements Runable {
 
-    private final static Logger LOGGER = LogManager.getLogger(Lion.class);
+    private static final Logger LOGGER = LogManager.getLogger(Lion.class);
+    private String animalType;
 
-    private final static String LION_NAME = "King Leon";
-    private final static String FAVOURITE_FOOD = "meat";
+    private static final String LION_NAME = "King Leon";
+    private static final  String FAVOURITE_FOOD = "meat";
 
     public Lion(String animalType, int maxAge, int maxWeight, String country, int maxSpeed) {
-        super(animalType, maxAge, maxWeight, country, maxSpeed);
+        super(maxAge, maxWeight, country, maxSpeed);
+        this.animalType = animalType;
+    }
+
+    public String getAnimalType() {
+        return animalType;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
     }
 
     public final void lionDescription() {
@@ -45,23 +56,27 @@ public final class Lion extends Animals implements Runable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
-        if (getClass() != o.getClass()) return false;
-        Lion name = (Lion) o;
-        if (LION_NAME == null) {
-            if (name.LION_NAME != null) return false;
-        } else if (!LION_NAME.equals(name.LION_NAME)) {
-            return false;
-        }
-        return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lion lion = (Lion) o;
+
+        return animalType != null ? animalType.equals(lion.animalType) : lion.animalType == null;
     }
 
     @Override
     public int hashCode() {
-        final int hash = 31;
-        int result = 1;
-        result = result * hash + ((FAVOURITE_FOOD == null) ? 0 : FAVOURITE_FOOD.hashCode());
-        return result;
+        return animalType != null ? animalType.hashCode() : 0;
+    }
+
+    public void findAnimal() {
+        final String lion = "Lion";
+        try {
+            if (animalType != lion) {
+                throw new AnimalNotFoundException("You should enter only : " + lion);
+            }
+        } catch (AnimalNotFoundException e) {
+            LOGGER.info(e.getMessage());
+        }
     }
 
 }

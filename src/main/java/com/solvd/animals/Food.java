@@ -1,4 +1,4 @@
-package main.java.com.solvd.animals;
+package com.solvd.animals;
 
 public class Food {
     private String foodName;

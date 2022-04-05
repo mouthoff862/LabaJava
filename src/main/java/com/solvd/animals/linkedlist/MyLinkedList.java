@@ -1,4 +1,4 @@
-package main.java.com.solvd.animals.linkedlist;
+package com.solvd.animals.linkedlist;
 
 public interface MyLinkedList<T> {
 

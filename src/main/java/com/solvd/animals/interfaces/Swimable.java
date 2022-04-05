@@ -1,4 +1,4 @@
-package main.java.com.solvd.animals.interfaces;
+package com.solvd.animals.interfaces;
 
 public interface Swimable {
 

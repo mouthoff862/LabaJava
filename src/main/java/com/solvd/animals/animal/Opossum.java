@@ -1,16 +1,25 @@
-package main.java.com.solvd.animals;
+package com.solvd.animals.animal;
 
-import main.java.com.solvd.animals.animal.Animals;
-import main.java.com.solvd.animals.interfaces.Runable;
+import com.solvd.animals.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Opossum extends Animals implements Runable {
 
-    private final static Logger LOGGER = LogManager.getLogger(Opossum.class);
+    private static final Logger LOGGER = LogManager.getLogger(Opossum.class);
+    private String animalType;
 
     public Opossum(String animalType, int maxAge, int maxWeight, String country, int maxSpeed) {
-        super(animalType, maxAge, maxWeight, country, maxSpeed);
+        super(maxAge, maxWeight, country, maxSpeed);
+        this.animalType = animalType;
+    }
+
+    public String getAnimalType() {
+        return animalType;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
     }
 
     @Override
@@ -44,22 +53,11 @@ public class Opossum extends Animals implements Runable {
 
         Opossum opossum = (Opossum) o;
 
-        if (getMaxAge() != opossum.getMaxAge()) return false;
-        if (getMaxWeight() != opossum.getMaxWeight()) return false;
-        if (getMaxSpeed() != opossum.getMaxSpeed()) return false;
-        if (getAnimalType() != null ? !getAnimalType().equals(opossum.getAnimalType()) : opossum.getAnimalType() != null)
-            return false;
-        return getCountry() != null ? getCountry().equals(opossum.getCountry()) : opossum.getCountry() == null;
+        return animalType != null ? animalType.equals(opossum.animalType) : opossum.animalType == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getAnimalType() != null ? getAnimalType().hashCode() : 0;
-        result = 31 * result + getMaxAge();
-        result = 31 * result + getMaxWeight();
-        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
-        result = 31 * result + getMaxSpeed();
-        return result;
+        return animalType != null ? animalType.hashCode() : 0;
     }
-
 }

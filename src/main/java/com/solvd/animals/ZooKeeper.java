@@ -1,13 +1,14 @@
-package main.java.com.solvd.animals;
+package com.solvd.animals;
 
-import main.java.com.solvd.animals.exceptions.BooleanException;
-import main.java.com.solvd.animals.interfaces.IFeed;
+import com.solvd.animals.exceptions.ExperienceException;
+
+import com.solvd.animals.interfaces.IFeed;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ZooKeeper implements IFeed {
 
-    private final static Logger LOGGER = LogManager.getLogger(ZooKeeper.class);
+    private static final Logger LOGGER = LogManager.getLogger(ZooKeeper.class);
 
     private String name;
     private String surname;
@@ -40,33 +41,37 @@ public class ZooKeeper implements IFeed {
         return experience;
     }
 
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
     @Override
     public void printDuties() {
         System.out.println("Zookeeper feed");
     }
 
-    public void move(ZooKeeper zooKeeper, Aviary firstAviary, Aviary secondAviary) {
-        String name = zooKeeper.getName();
-        String firstAviaryName = firstAviary.getNameAviary();
-        String secondAviaryName = secondAviary.getNameAviary();
-        LOGGER.info("Zookeeper " + name + " moves animals from " + firstAviaryName + " to " + secondAviaryName);
+    public void move(Aviary firstAviary, Aviary secondAviary) {
+        LOGGER.info("Zookeeper " + getName() + " moves animals from " + firstAviary.getIdAviary() + " to " + secondAviary.getIdAviary() + " aviary.");
     }
 
     public void feeding(Food food, Food meal) {
-        String grass = food.getFoodName();
-        String meat = meal.getFoodName();
-        LOGGER.info(getName() + " feeds all animals twice a day with " + grass + " and " + meat);
+        LOGGER.info(getName() + " feeds all animals twice a day with " + food.getFoodName() + " and " + meal.getFoodName());
     }
 
-    public void setExperience(int experience) {
-        if (experience == 0) {
+    public void catchANewbie() {
             try {
-                throw new BooleanException("Zookeeper doesn't have work experience");
-            } catch (BooleanException e) {
+                if (experience <= 5) {
+                    throw new ExperienceException("This zookeeper is a newbie. He needs to work more!");
+                } else if (experience <= 30) {
+                    throw new ExperienceException("This man has great work experience!");
+                } else {
+                    LOGGER.info("I think it's time for this guy to retire.");
+                }
+            } catch (ExperienceException e) {
                 LOGGER.info(e.getMessage());
             }
         }
-        this.experience = experience;
-    }
 
 }
+
+

@@ -1,14 +1,26 @@
-package main.java.com.solvd.animals;
-import main.java.com.solvd.animals.interfaces.Swimable;
+package com.solvd.animals.animal;
+import com.solvd.animals.interfaces.Swimable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+
 public class Dolphin extends Animals implements Swimable {
 
-    private final static Logger LOGGER = LogManager.getLogger(Dolphin.class);
+    private static final Logger LOGGER = LogManager.getLogger(Dolphin.class);
+    private String animalType;
 
     public Dolphin(String animalType, int maxAge, int maxWeight, String country, int maxSpeed) {
-        super(animalType, maxAge, maxWeight, country, maxSpeed);
+        super(maxAge, maxWeight, country, maxSpeed);
+        this.animalType = animalType;
+    }
+
+    public String getAnimalType() {
+        return animalType;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
     }
 
     @Override
@@ -34,7 +46,6 @@ public class Dolphin extends Animals implements Swimable {
                 "Maximum adult weight can be up to " + getMaxWeight() + " kg.");
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,22 +53,12 @@ public class Dolphin extends Animals implements Swimable {
 
         Dolphin dolphin = (Dolphin) o;
 
-        if (getMaxAge() != dolphin.getMaxAge()) return false;
-        if (getMaxWeight() != dolphin.getMaxWeight()) return false;
-        if (getMaxSpeed() != dolphin.getMaxSpeed()) return false;
-        if (getAnimalType() != null ? !getAnimalType().equals(dolphin.getAnimalType()) : dolphin.getAnimalType() != null)
-            return false;
-        return getCountry() != null ? getCountry().equals(dolphin.getCountry()) : dolphin.getCountry() == null;
+        return animalType != null ? animalType.equals(dolphin.animalType) : dolphin.animalType == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getAnimalType() != null ? getAnimalType().hashCode() : 0;
-        result = 31 * result + getMaxAge();
-        result = 31 * result + getMaxWeight();
-        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
-        result = 31 * result + getMaxSpeed();
-        return result;
+        return animalType != null ? animalType.hashCode() : 0;
     }
 
 }

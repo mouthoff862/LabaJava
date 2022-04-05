@@ -1,20 +1,19 @@
-package main.java.com.solvd.animals;
+package com.solvd.animals;
 
-import main.java.com.solvd.animals.exceptions.NumCheckException;
+import com.solvd.animals.exceptions.NumCheckException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Aviary {
 
-    private final static Logger LOGGER = LogManager.getLogger(Aviary.class);
+    private static final Logger LOGGER = LogManager.getLogger(Aviary.class);
 
-    private String nameAviary;
+    private int idAviary;
     private int maxHeight;
     private int maxWidth;
-    private int counterOfAviaries = 20;
 
-    public Aviary(String nameAviary) {
-        this.nameAviary = nameAviary;
+    public Aviary(int idAviary) {
+        this.idAviary = idAviary;
     }
 
     public Aviary(int maxHeight, int maxWidth) {
@@ -22,12 +21,12 @@ public class Aviary {
         this.maxWidth = maxWidth;
     }
 
-    public void setNameAviary(String nameAviary) {
-        this.nameAviary = nameAviary;
+    public void setIdAviary(int idAviary) {
+        this.idAviary = idAviary;
     }
 
-    public String getNameAviary() {
-        return nameAviary;
+    public int getIdAviary() {
+        return idAviary;
     }
 
     public void setMaxHeight(int maxHeight) {
@@ -46,20 +45,16 @@ public class Aviary {
         return maxWidth;
     }
 
-    public int getCounterOfAviaries() {
-        return counterOfAviaries;
-    }
-
-    public void setCounterOfAviaries(int counterOfAviaries) {
-        if (counterOfAviaries <= 0 && counterOfAviaries >= 50) {
-            try {
-                throw new NumCheckException("Something went wrong");
-            } catch (NumCheckException e) {
-                LOGGER.info(e.getMessage());
-                this.counterOfAviaries = 20;
+    public void checkNumberAviary() {
+        try {
+            if (idAviary == 0) {
+                throw new NumCheckException("Number cannot be ZERO!");
+            } else {
+                LOGGER.info("ID of aviary is: " + getIdAviary());
             }
+        } catch (NumCheckException e) {
+            LOGGER.info(e.getMessage());
         }
-        this.counterOfAviaries = counterOfAviaries;
     }
 
 }

@@ -1,5 +1,6 @@
 package main.java.com.solvd.animals;
 
+import main.java.com.solvd.animals.animal.Animals;
 import main.java.com.solvd.animals.interfaces.Runable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

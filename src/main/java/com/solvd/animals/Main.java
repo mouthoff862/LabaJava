@@ -1,17 +1,20 @@
 package com.solvd.animals;
 
-import com.solvd.animals.Aviary;
-import com.solvd.animals.Food;
-import com.solvd.animals.Zoo;
-import com.solvd.animals.ZooKeeper;
 import com.solvd.animals.animal.Kangaroo;
 import com.solvd.animals.animal.Lion;
 import com.solvd.animals.animal.Zebra;
+import com.solvd.animals.enums.AnimalDesc;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.util.FileUtils;
+import org.apache.commons.io.FileUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Main {
@@ -30,7 +33,13 @@ public class Main {
         collectionOfZebras();
         getListOfHerbivores();
 
-        findUniqueWords();
+        try {
+            findUniqueWords();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        enums();
 
     }
 
@@ -124,32 +133,42 @@ public class Main {
         LOGGER.info("Sorted Zebras List by Name : " + zebras);
     }
 
-    private static void findUniqueWords() {
+    private static void findUniqueWords() throws IOException {
+
         String filePath = "D:/laba/src/main/java/resourses/lion.txt";
         String s = " ";
-        List<String> uniqueWords = new ArrayList<>();
-        try (FileReader fileReader = new FileReader(new File(filePath));
-             BufferedReader reader = new BufferedReader(fileReader)) {
-            String line = reader.readLine();
-            while (line != null) {
-                String[] words = line.split("[\\s]+");
-                for (String word : words) {
-                    if (!uniqueWords.contains(word)) {
-                        uniqueWords.add(word);
-                    }
-                }
-                line = reader.readLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Collections.sort(uniqueWords);
-        LOGGER.info(uniqueWords);
-        String[] words = s.split("\\s*(\\s|,|!|\\.)\\s*");
-        Set<String> newWords = new HashSet<String>();
-        Collections.addAll(uniqueWords);
-        File newFile = new File("D:/laba/src/main/java/resourses/lionResult1.txt");
 
+        try {
+            s = Files.readString(Paths.get(filePath));
+        } catch (IOException e) {
+            LOGGER.info(e.getMessage());
+        }
+        String[] allWords = s.split("\\s*(\\s|,|!|\\.)\\s*");
+        Set<String> uniqueWords = new HashSet<String>();
+        for (Object word : uniqueWords) {
+            uniqueWords.add(word + ": " + StringUtils.countMatches(s, (CharSequence) word));
+        }
+        Collections.addAll(uniqueWords, allWords);
+        FileUtils.writeLines(new File("D:/laba/src/main/java/resourses/lionResult.txt"), uniqueWords);
+    }
+
+    private static void enums() {
+        LOGGER.info(AnimalDesc.LION.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.LION.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.OPOSSUM.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.OPOSSUM.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.ZEBRA.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.ZEBRA.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.SPARROW.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.SPARROW.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.AFRICA.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.AFRICA.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.ITALY.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.ITALY.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.FOOD_MEAT.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.FOOD_MEAT.getSubAnimals().getValue());
+        LOGGER.info(AnimalDesc.FOOD_GRASS.getMainAnimals().getValue());
+        LOGGER.info(AnimalDesc.FOOD_GRASS.getSubAnimals().getValue());
     }
 
 }

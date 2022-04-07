@@ -31,7 +31,7 @@ public class Main {
         collectionLionHashSet();
         arrayListOfKangaroos();
         collectionOfZebras();
-        getListOfHerbivores();
+        collectionOfHerbivores();
 
         try {
             findUniqueWords();
@@ -73,7 +73,7 @@ public class Main {
     }
 
     private static void arrayListOfKangaroos() {
-        ArrayList<Kangaroo> arrayOfkangaroos = new ArrayList<>();
+        List<Kangaroo> arrayOfkangaroos = new ArrayList<>();
         arrayOfkangaroos.add(new Kangaroo("Kangaroo David", 15, 80, "Australia", 40));
         arrayOfkangaroos.add(new Kangaroo("Kangoo", 5, 40, "Australia", 30));
 
@@ -116,7 +116,7 @@ public class Main {
 
     }
 
-    private static void getListOfHerbivores() {
+    private static void collectionOfHerbivores() {
         List<Zebra> zebras = new ArrayList<>();
 
         zebras.add(new Zebra("Zebra Tom", 20, 300, "Africa", 60));

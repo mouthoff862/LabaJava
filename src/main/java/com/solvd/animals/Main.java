@@ -4,15 +4,18 @@ import com.solvd.animals.animal.Kangaroo;
 import com.solvd.animals.animal.Lion;
 import com.solvd.animals.animal.Zebra;
 import com.solvd.animals.enums.AnimalDesc;
+import com.solvd.animals.exceptions.AnimalNotFoundException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.FileUtils;
 
+import java.util.stream.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -33,11 +36,8 @@ public class Main {
         collectionOfZebras();
         collectionOfHerbivores();
 
-        try {
-            findUniqueWords();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        findUniqueWords();
 
         enums();
 
@@ -113,43 +113,36 @@ public class Main {
                 LOGGER.info(zebra.getMaxWeight());
             }
         }
-
     }
 
     private static void collectionOfHerbivores() {
-        List<Zebra> zebras = new ArrayList<>();
+        Zebra zebraLittle = new Zebra("Little Zebra", 12, 200, "Africa", 50);
+        Zebra zebraMiddle = new Zebra("Medium Zebra", 14, 250, "Australia", 55);
+        Zebra zebraBig = new Zebra("Big zebra", 15, 300, "Africa", 60);
+        Map<String, Zebra> zebras = new HashMap<>();
 
-        zebras.add(new Zebra("Zebra Tom", 20, 300, "Africa", 60));
-        zebras.add(new Zebra("Zebra Fred", 15, 250, "Belarus", 60));
-        zebras.add(new Zebra("Zebra Alex", 12, 270, "New Zealand", 65));
+        zebras.put("zebraLittle", zebraLittle);
+        zebras.put("zebraMiddle", zebraMiddle);
+        zebras.put("zebraBig", zebraBig);
 
-        LOGGER.info("All zebras : " + zebras);
-
-        zebras.sort(Comparator.comparingInt(Zebra::getMaxAge));
-
-        LOGGER.info("Sorted Zebras List by Age : " + zebras);
-
-        Collections.sort(zebras, Comparator.comparing(Zebra::getAnimalType));
-        LOGGER.info("Sorted Zebras List by Name : " + zebras);
+        zebras.entrySet().stream().map(o -> o.getKey() + " " + o.getValue()).forEach(LOGGER::info);
     }
 
-    private static void findUniqueWords() throws IOException {
-
-        String filePath = "D:/laba/src/main/java/resourses/lion.txt";
-        String s = " ";
-
+    private static void findUniqueWords()  {
         try {
-            s = Files.readString(Paths.get(filePath));
+            File file = new File("D:/laba/src/main/java/resourses/lion.txt");
+            String string = StringUtils.lowerCase(FileUtils.readFileToString(file, StandardCharsets.UTF_8))
+                    .replaceAll("\\s*(\\s|,|!|\\.)\\s*", " ");
+            String[] array = string.split(" ");
+            Set<String> hashSet = new HashSet(List.of(array));
+            List<String> list = new ArrayList<>();
+            for (String str : hashSet) {
+                list.add(str + " " + StringUtils.countMatches(string, str));
+            }
+            FileUtils.writeLines(new File("D:/laba/src/main/java/resourses/lionRESULT1.txt"), list);
         } catch (IOException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info(e);
         }
-        String[] allWords = s.split("\\s*(\\s|,|!|\\.)\\s*");
-        Set<String> uniqueWords = new HashSet<String>();
-        for (Object word : uniqueWords) {
-            uniqueWords.add(word + ": " + StringUtils.countMatches(s, (CharSequence) word));
-        }
-        Collections.addAll(uniqueWords, allWords);
-        FileUtils.writeLines(new File("D:/laba/src/main/java/resourses/lionResult.txt"), uniqueWords);
     }
 
     private static void enums() {

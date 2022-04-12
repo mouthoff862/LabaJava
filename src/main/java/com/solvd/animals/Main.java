@@ -2,6 +2,7 @@ package com.solvd.animals;
 
 import com.solvd.animals.animal.Kangaroo;
 import com.solvd.animals.animal.Lion;
+import com.solvd.animals.animal.Opossum;
 import com.solvd.animals.animal.Zebra;
 import com.solvd.animals.enums.AnimalDesc;
 import com.solvd.animals.exceptions.AnimalNotFoundException;
@@ -31,7 +32,7 @@ public class Main {
         // Collections:
 
         collectionOfAviaries();
-        collectionLionHashSet();
+        collectionOpossumHashSet();
         arrayListOfKangaroos();
         collectionOfZebras();
         collectionOfHerbivores();
@@ -82,18 +83,19 @@ public class Main {
         }
     }
 
-    private static void collectionLionHashSet() {
-        Lion lionFirst = new Lion("Lion", 14, 150, "Africa", 80);
-        Lion lionSecond = new Lion("Tiger", 10, 140, "Africa", 70);
+    private static void collectionOpossumHashSet() {
+        Opossum opossumFirst = new Opossum("Opossum Jack", 14, 7, "Africa", 1);
+        Opossum opossumSecond = new Opossum("Opossum Piter", 10, 5, "Africa", 1);
 
-        LOGGER.info(lionFirst.equals(lionSecond));
-        LOGGER.info(lionFirst.hashCode());
-        LOGGER.info(lionSecond.hashCode());
+        LOGGER.info(opossumFirst.equals(opossumSecond));
+        LOGGER.info(opossumFirst.hashCode());
+        LOGGER.info(opossumSecond.hashCode());
 
-        Set<Lion> lions = new HashSet<Lion>();
-        lions.add(lionFirst);
-        lions.add(lionSecond);
-        LOGGER.info(lions.size());
+        Set<Opossum> opossums = new HashSet<Opossum>();
+        opossums.add(opossumFirst);
+        opossums.add(opossumSecond);
+        LOGGER.info(opossums.size());
+        opossums.stream().forEach(LOGGER::info);
     }
 
     private static void collectionOfZebras() {
@@ -107,12 +109,7 @@ public class Main {
         zebras.add(zebraMiddle);
         zebras.add(zebraBig);
 
-        int i = 240;
-        for (Zebra zebra : zebras) {
-            if (i < zebra.getMaxWeight()) {
-                LOGGER.info(zebra.getMaxWeight());
-            }
-        }
+        zebras.stream().forEach(LOGGER::info);
     }
 
     private static void collectionOfHerbivores() {
@@ -125,7 +122,7 @@ public class Main {
         zebras.put("zebraMiddle", zebraMiddle);
         zebras.put("zebraBig", zebraBig);
 
-        zebras.entrySet().stream().map(o -> o.getKey() + " " + o.getValue()).forEach(LOGGER::info);
+        zebras.entrySet().stream().map(o -> o.getKey() + " " + o.getValue().getAnimalType()).forEach(LOGGER::info);
     }
 
     private static void findUniqueWords()  {

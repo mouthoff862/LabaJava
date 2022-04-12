@@ -15,6 +15,9 @@ public abstract class Animals {
         this.maxSpeed = maxSpeed;
     }
 
+    protected Animals() {
+    }
+
     public void setAge(int maxAge) {
         this.maxAge = maxAge;
     }

@@ -1,4 +1,5 @@
 package com.solvd.animals.animal;
+
 import com.solvd.animals.interfaces.Swimable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -26,8 +26,7 @@ public class Dolphin extends Animals implements Swimable {
 
     @Override
     public void showMaxAge() {
-        int maxAge = getMaxAge();
-        LOGGER.info("This animal can live up to " + maxAge + " years.");
+        LOGGER.info("This animal can live up to " + getMaxAge() + " years.");
     }
 
     @Override
@@ -37,8 +36,7 @@ public class Dolphin extends Animals implements Swimable {
 
     @Override
     public void printAnimalType() {
-        String dolphin = getAnimalType();
-        LOGGER.info(dolphin + " - description: ");
+        LOGGER.info(getAnimalType() + " - description: ");
     }
 
     @Override

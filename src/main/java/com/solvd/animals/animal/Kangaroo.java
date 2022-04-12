@@ -24,14 +24,12 @@ public class Kangaroo extends Animals implements Jumpable {
 
     @Override
     public void printAnimalType() {
-        String kangaroo = getAnimalType();
-        LOGGER.info(kangaroo + " - description: ");
+        LOGGER.info(getAnimalType() + " - description: ");
     }
 
     @Override
     public void showMaxAge() {
-        int old = getMaxAge();
-        LOGGER.info("This animal can live up to " + old + " years.");
+        LOGGER.info("This animal can live up to " + getMaxAge() + " years.");
     }
 
     @Override

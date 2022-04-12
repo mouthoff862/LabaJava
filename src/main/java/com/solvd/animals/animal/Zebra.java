@@ -43,14 +43,12 @@ public class Zebra extends Animals implements Runable {
 
     @Override
     public void printAnimalType() {
-        String zebra = getAnimalType();
-        LOGGER.info(zebra + " - description: ");
+        LOGGER.info(getAnimalType() + " - description: ");
     }
 
     @Override
     public void showMaxAge() {
-        int maxAge = getMaxAge();
-        LOGGER.info("This animal can live up to " + maxAge + " years.");
+        LOGGER.info("This animal can live up to " + getMaxAge() + " years.");
     }
 
     @Override

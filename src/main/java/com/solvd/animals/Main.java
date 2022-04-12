@@ -1,25 +1,20 @@
 package com.solvd.animals;
 
 import com.solvd.animals.animal.Kangaroo;
-import com.solvd.animals.animal.Lion;
 import com.solvd.animals.animal.Opossum;
 import com.solvd.animals.animal.Zebra;
 import com.solvd.animals.enums.AnimalDesc;
-import com.solvd.animals.exceptions.AnimalNotFoundException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.FileUtils;
 
-import java.util.stream.*;
-import java.io.BufferedReader;
+import java.io.*;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -31,15 +26,16 @@ public class Main {
 
         // Collections:
 
-        collectionOfAviaries();
+        collectionOfKeepers();
         collectionOpossumHashSet();
-        arrayListOfKangaroos();
+        collectionOfKangaroos();
         collectionOfZebras();
-        collectionOfHerbivores();
+        collectionOfZebraMap();
 
-
+        // Unique words in file:
         findUniqueWords();
 
+        // Enum lesson:
         enums();
 
     }
@@ -62,25 +58,30 @@ public class Main {
         anton.catchANewbie();
     }
 
-    private static void collectionOfAviaries() {
-        List<Aviary> numbers = new ArrayList<>();
+    private static void collectionOfKeepers() {
+        ZooKeeper david = new ZooKeeper("David", "Peters", 10);
+        ZooKeeper paul = new ZooKeeper("Paul", "Austin", 15);
+        ZooKeeper tom = new ZooKeeper("Tom", "Drake", 20);
 
-        numbers.add(new Aviary(90, 20));
-        numbers.add(new Aviary(40, 50));
-        numbers.add(new Aviary(50, 90));
+        Set<ZooKeeper> keepers = new LinkedHashSet<>();
 
-        LOGGER.info("Count of aviaries: " + numbers.size());
+        keepers.add(david);
+        keepers.add(paul);
+        keepers.add(tom);
 
+        keepers.stream().forEach(LOGGER::info);
     }
 
-    private static void arrayListOfKangaroos() {
-        List<Kangaroo> arrayOfkangaroos = new ArrayList<>();
-        arrayOfkangaroos.add(new Kangaroo("Kangaroo David", 15, 80, "Australia", 40));
-        arrayOfkangaroos.add(new Kangaroo("Kangoo", 5, 40, "Australia", 30));
+    private static void collectionOfKangaroos() {
+        Kangaroo firstKangoo = new Kangaroo("Kangaroo David", 15, 80, "Australia", 40);
+        Kangaroo secondKangoo = new Kangaroo("Kangoo Peter", 5, 40, "Australia", 30);
 
-        for (Kangaroo kangaroo : arrayOfkangaroos) {
-            LOGGER.info("Kangaroos: " + kangaroo.getAnimalType() + ". Max age:  " + kangaroo.getMaxAge() + ". Max weight: " + kangaroo.getMaxWeight());
-        }
+        List<Kangaroo> kangaroos = new ArrayList<>();
+
+        kangaroos.add(firstKangoo);
+        kangaroos.add(secondKangoo);
+
+        kangaroos.stream().forEach(LOGGER::info);
     }
 
     private static void collectionOpossumHashSet() {
@@ -92,6 +93,7 @@ public class Main {
         LOGGER.info(opossumSecond.hashCode());
 
         Set<Opossum> opossums = new HashSet<Opossum>();
+
         opossums.add(opossumFirst);
         opossums.add(opossumSecond);
         LOGGER.info(opossums.size());
@@ -99,11 +101,11 @@ public class Main {
     }
 
     private static void collectionOfZebras() {
-        LinkedList<Zebra> zebras = new LinkedList<>();
-
         Zebra zebraLittle = new Zebra("Little Zebra", 12, 200, "Africa", 50);
         Zebra zebraMiddle = new Zebra("Medium Zebra", 14, 250, "Australia", 55);
         Zebra zebraBig = new Zebra("Big zebra", 15, 300, "Africa", 60);
+
+        LinkedList<Zebra> zebras = new LinkedList<>();
 
         zebras.add(zebraLittle);
         zebras.add(zebraMiddle);
@@ -112,20 +114,21 @@ public class Main {
         zebras.stream().forEach(LOGGER::info);
     }
 
-    private static void collectionOfHerbivores() {
-        Zebra zebraLittle = new Zebra("Little Zebra", 12, 200, "Africa", 50);
-        Zebra zebraMiddle = new Zebra("Medium Zebra", 14, 250, "Australia", 55);
-        Zebra zebraBig = new Zebra("Big zebra", 15, 300, "Africa", 60);
+    private static void collectionOfZebraMap() {
+        Zebra zebraLittle = new Zebra("Little Zebra", 12, 120, "Africa", 60);
+        Zebra zebraMiddle = new Zebra("Medium Zebra", 13, 130, "France", 70);
+        Zebra zebraBig = new Zebra("Big Zebra", 15, 140, "Australia", 75);
+
         Map<String, Zebra> zebras = new HashMap<>();
 
         zebras.put("zebraLittle", zebraLittle);
         zebras.put("zebraMiddle", zebraMiddle);
         zebras.put("zebraBig", zebraBig);
 
-        zebras.entrySet().stream().map(o -> o.getKey() + " " + o.getValue().getAnimalType()).forEach(LOGGER::info);
+        zebras.entrySet().stream().forEach(LOGGER::info);
     }
 
-    private static void findUniqueWords()  {
+    private static void findUniqueWords() {
         try {
             File file = new File("D:/laba/src/main/java/resourses/lion.txt");
             String string = StringUtils.lowerCase(FileUtils.readFileToString(file, StandardCharsets.UTF_8))

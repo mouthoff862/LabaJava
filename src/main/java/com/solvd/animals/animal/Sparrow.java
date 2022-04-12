@@ -24,14 +24,12 @@ public class Sparrow extends Animals implements Flyable {
 
     @Override
     public void printAnimalType() {
-        String sparrow = getAnimalType();
-        LOGGER.info(sparrow + " - description: ");
+        LOGGER.info(getAnimalType() + " - description: ");
     }
 
     @Override
     public void showMaxAge() {
-        int maxAge = getMaxAge();
-        LOGGER.info("This animal can live up to " + maxAge + " years.");
+        LOGGER.info("This animal can live up to " + getMaxAge() + " years.");
     }
 
     @Override

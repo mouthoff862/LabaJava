@@ -14,6 +14,7 @@ com\solvd\animals\enums\MainAnimals$1.class
 com\solvd\animals\Food.class
 com\solvd\animals\animal\Lion.class
 com\solvd\animals\animal\Dolphin.class
+com\solvd\animals\functionalinterfaces\IPrintId.class
 com\solvd\animals\animal\Opossum.class
 com\solvd\animals\exceptions\CounterException.class
 com\solvd\animals\linkedlist\MyLinkedListImpl$Node.class
@@ -28,8 +29,8 @@ com\solvd\animals\exceptions\EmptyLineException.class
 com\solvd\animals\enums\MainAnimals$2.class
 com\solvd\animals\exceptions\AnimalNotFoundException.class
 com\solvd\animals\functionalinterfaces\Foodable.class
+com\solvd\animals\functionalinterfaces\ICatchNewbie.class
 com\solvd\animals\enums\MainAnimals.class
 com\solvd\animals\Main.class
-main\java\LoggerRunner.class
 com\solvd\animals\Aviary.class
 com\solvd\animals\functionalinterfaces\IShowPerimeter.class

@@ -1,6 +1,7 @@
 D:\laba\src\main\java\com\solvd\animals\interfaces\Runable.java
 D:\laba\src\main\java\com\solvd\animals\animal\Kangaroo.java
 D:\laba\src\main\java\com\solvd\animals\linkedlist\MyLinkedList.java
+D:\laba\src\main\java\com\solvd\animals\functionalinterfaces\ICatchNewbie.java
 D:\laba\src\main\java\com\solvd\animals\ZooKeeper.java
 D:\laba\src\main\java\com\solvd\animals\Zoo.java
 D:\laba\src\main\java\com\solvd\animals\animal\Animals.java
@@ -11,7 +12,6 @@ D:\laba\src\main\java\com\solvd\animals\enums\AnimalDesc.java
 D:\laba\src\main\java\com\solvd\animals\exceptions\CounterException.java
 D:\laba\src\main\java\com\solvd\animals\functionalinterfaces\Foodable.java
 D:\laba\src\main\java\com\solvd\animals\exceptions\EmptyLineException.java
-D:\laba\src\main\java\LoggerRunner.java
 D:\laba\src\main\java\com\solvd\animals\functionalinterfaces\Descriptionable.java
 D:\laba\src\main\java\com\solvd\animals\interfaces\Jumpable.java
 D:\laba\src\main\java\com\solvd\animals\exceptions\AnimalNotFoundException.java
@@ -27,5 +27,6 @@ D:\laba\src\main\java\com\solvd\animals\animal\Lion.java
 D:\laba\src\main\java\com\solvd\animals\enums\MainAnimals.java
 D:\laba\src\main\java\com\solvd\animals\exceptions\ExperienceException.java
 D:\laba\src\main\java\com\solvd\animals\enums\SubAnimals.java
+D:\laba\src\main\java\com\solvd\animals\functionalinterfaces\IPrintId.java
 D:\laba\src\main\java\com\solvd\animals\exceptions\NumCheckException.java
 D:\laba\src\main\java\com\solvd\animals\functionalinterfaces\IShowPerimeter.java

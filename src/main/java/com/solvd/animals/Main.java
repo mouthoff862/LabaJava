@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -138,15 +139,18 @@ public class Main {
         try {
             File file = new File("D:/laba/src/main/java/resourses/lion.txt");
             String string = StringUtils.lowerCase(FileUtils.readFileToString(file, StandardCharsets.UTF_8))
-                    .replaceAll("\\s*(\\s|,|!|\\.)\\s*", " ");
+                    .replaceAll("\\s*(\\s|,|!|'s|\\.)\\s*", " ");
             String[] array = string.split(" ");
             Set<String> hashSet = new HashSet(List.of(array));
             List<String> list = new ArrayList<>();
             for (String str : hashSet) {
                 list.add(str + " " + StringUtils.countMatches(string, str));
             }
-            FileUtils.writeLines(new File("D:/laba/src/main/java/resourses/lionRESULT1.txt"), list);
-        } catch (IOException e) {
+            FileUtils.writeLines(new File("D:/laba/src/main/java/resourses/lionRESULT2.txt"), list);
+        } catch (FileNotFoundException ex) {
+            LOGGER.info(ex.getMessage());
+        }
+        catch (IOException e) {
             LOGGER.info(e);
         }
     }

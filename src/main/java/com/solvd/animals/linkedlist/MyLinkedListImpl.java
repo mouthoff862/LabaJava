@@ -6,7 +6,6 @@ public class MyLinkedListImpl<T extends Comparable<T>> implements MyLinkedList<T
 
     private static class Node {
 
-
         private Object value;
         private Node next;
 

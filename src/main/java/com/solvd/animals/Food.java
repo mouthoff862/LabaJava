@@ -5,11 +5,8 @@ public class Food {
     private int maxWeight;
     private String color;
 
-    public Food(String foodName) {
+    public Food(String foodName, int maxWeight, String color) {
         this.foodName = foodName;
-    }
-
-    public Food(int maxWeight, String color) {
         this.maxWeight = maxWeight;
         this.color = color;
     }

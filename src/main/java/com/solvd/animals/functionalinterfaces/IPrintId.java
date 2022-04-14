@@ -1,8 +1,8 @@
 package com.solvd.animals.functionalinterfaces;
 
 @FunctionalInterface
-public interface Foodable {
+public interface IPrintId {
 
-    int multiply(int first, int second);
+    String apply(int id);
 
 }

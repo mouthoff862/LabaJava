@@ -11,14 +11,16 @@ public class Aviary {
     private int idAviary;
     private int maxHeight;
     private int maxWidth;
+    private int maxLength;
 
     public Aviary(int idAviary) {
         this.idAviary = idAviary;
     }
 
-    public Aviary(int maxHeight, int maxWidth) {
+    public Aviary(int maxHeight, int maxWidth, int maxLength) {
         this.maxHeight = maxHeight;
         this.maxWidth = maxWidth;
+        this.maxLength = maxLength;
     }
 
     public void setIdAviary(int idAviary) {
@@ -44,6 +46,15 @@ public class Aviary {
     public int getMaxWidth() {
         return maxWidth;
     }
+
+    public void setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
+
 
     public void checkNumberAviary() {
         try {

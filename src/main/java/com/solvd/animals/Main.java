@@ -4,17 +4,17 @@ import com.solvd.animals.animal.Kangaroo;
 import com.solvd.animals.animal.Opossum;
 import com.solvd.animals.animal.Zebra;
 import com.solvd.animals.enums.AnimalDesc;
+import com.solvd.animals.functionalinterfaces.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.FileUtils;
 
-import java.io.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Main {
 
@@ -25,7 +25,6 @@ public class Main {
         zookeeperDuties();
 
         // Collections:
-
         collectionOfKeepers();
         collectionOpossumHashSet();
         collectionOfKangaroos();
@@ -38,6 +37,13 @@ public class Main {
         // Enum lesson:
         enums();
 
+        //Functional Interfaces:
+        lambdaDescriptionable();
+        lambdaFoodAble();
+        lambdaICatchNewbie();
+        lambdaIPrintID();
+        lambdaShowPerimeter();
+
     }
 
     private static void zookeeperDuties() {
@@ -47,8 +53,8 @@ public class Main {
         alex.move(firstAviary, secondAviary);
 
         ZooKeeper petr = new ZooKeeper("Alex", "Peter", 10);
-        Food grass = new Food("grass");
-        Food meat = new Food("meat");
+        Food grass = new Food("grass", 5, "Green");
+        Food meat = new Food("meat", 10, "Red");
         petr.feeding(grass, meat);
 
         Zoo zooName = new Zoo(11, "Zoo");
@@ -162,6 +168,76 @@ public class Main {
         LOGGER.info(AnimalDesc.FOOD_MEAT.getSubAnimals().getValue());
         LOGGER.info(AnimalDesc.FOOD_GRASS.getMainAnimals().getValue());
         LOGGER.info(AnimalDesc.FOOD_GRASS.getSubAnimals().getValue());
+    }
+
+    private static void lambdaDescriptionable() {
+        Opossum opossumFirst = new Opossum("Opossum Jack", 5, 4, "France", 1);
+        Opossum opossumSecond = new Opossum("Opossum Piter", 4, 3, "Poland", 1);
+
+        Descriptionable desc = x -> {
+            String s = x;
+            return String.valueOf(s);
+        };
+
+        LOGGER.info("Animal name: " + desc.description(opossumFirst.getAnimalType()));
+        LOGGER.info("Animal name: " + desc.description(opossumSecond.getAnimalType()));
+    }
+
+    private static void lambdaFoodAble() {
+        Food firstFood = new Food("Meat", 40, "Red");
+        Food secondFood = new Food("Grass", 20, "Green");
+
+        Foodable foodable = (x, y) -> x * y;
+        LOGGER.info("All animals eat " + foodable.multiply(firstFood.getMaxWeight(), secondFood.getMaxWeight()) + " kilograms per day");
+    }
+
+    private static void lambdaICatchNewbie() {
+        ZooKeeper vasiliy = new ZooKeeper("Vasiliy", "Petrov", 10);
+        ZooKeeper paul = new ZooKeeper("Paul", "Pavlovskiy", 20);
+
+        ICatchNewbie catchNewbie = (x, y) -> {
+            if (x > y)
+                return "First Zookeeper has more work experience.";
+            else
+                return "Second Zookeeper has more work experience.";
+        };
+        LOGGER.info("Result: " + catchNewbie.get(vasiliy.getExperience(), paul.getExperience()));
+    }
+
+    private static void lambdaIPrintID() {
+        Aviary aviOne = new Aviary(1);
+        Aviary aviSecond = new Aviary(2);
+        Aviary aviThird = new Aviary(3);
+        Aviary aviFourth = new Aviary(4);
+        Aviary aviFifth = new Aviary(5);
+
+        List<Aviary> allAvies = new ArrayList<>();
+        allAvies.add(aviOne);
+        allAvies.add(aviSecond);
+        allAvies.add(aviThird);
+        allAvies.add(aviFourth);
+        allAvies.add(aviFifth);
+
+        int size = allAvies.size();
+
+        IPrintId ids = x -> {
+            if (x != size) {
+                return "Size of aviaries: ";
+            } else {
+                return "Size is correct";
+            }
+        };
+        LOGGER.info(ids.apply(allAvies.size()) + " : " + size);
+    }
+
+    private static void lambdaShowPerimeter() {
+        Aviary aviary = new Aviary(10, 20, 30);
+
+        IShowPerimeter perimeter = (x, y, l) -> {
+            return x * y * l;
+        };
+
+        LOGGER.info("Perimeter: " + perimeter.calculate(aviary.getMaxWidth(), aviary.getMaxHeight(), aviary.getMaxLength()) + " m.");
     }
 
 }

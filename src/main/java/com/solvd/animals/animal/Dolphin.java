@@ -4,8 +4,6 @@ import com.solvd.animals.interfaces.Swimable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Objects;
-
 public class Dolphin extends Animals implements Swimable {
 
     private static final Logger LOGGER = LogManager.getLogger(Dolphin.class);

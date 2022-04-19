@@ -1,6 +1,13 @@
 package com.solvd.animals;
 
-public class Food {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Food implements Runnable {
+    private static final Logger LOGGER = LogManager.getLogger(Food.class);
     private String foodName;
     private int maxWeight;
     private String color;
@@ -35,4 +42,16 @@ public class Food {
         return color;
     }
 
+    @Override
+    public void run() {
+        try {
+            Date d = new Date();
+            SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss");
+            LOGGER.info("Date when the " +
+                    getFoodName() + " was arrived : " + ft.format(d));
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

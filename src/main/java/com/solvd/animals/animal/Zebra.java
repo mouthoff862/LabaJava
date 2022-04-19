@@ -8,7 +8,6 @@ public class Zebra extends Animals implements Runable {
 
     private static final Logger LOGGER = LogManager.getLogger(Zebra.class);
 
-    private String typeOfZebra;
     private static String description;
     private String animalType;
 
@@ -31,14 +30,6 @@ public class Zebra extends Animals implements Runable {
 
     public static void showDescription() {
         LOGGER.info(description);
-    }
-
-    public String getTypeOfZebra() {
-        return typeOfZebra;
-    }
-
-    public void setTypeOfZebra(String typeOfZebra) {
-        this.typeOfZebra = typeOfZebra;
     }
 
     @Override

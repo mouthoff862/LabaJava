@@ -1,8 +1,8 @@
 package com.solvd.animals;
 
 import com.solvd.animals.exceptions.ExperienceException;
-
 import com.solvd.animals.interfaces.IFeed;
+import com.solvd.animals.Aviary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,7 +47,7 @@ public class ZooKeeper implements IFeed {
 
     @Override
     public void printDuties() {
-        System.out.println("Zookeeper feed");
+        LOGGER.info("Zookeeper feed");
     }
 
     public void move(Aviary firstAviary, Aviary secondAviary) {

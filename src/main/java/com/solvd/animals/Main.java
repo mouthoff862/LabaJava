@@ -5,6 +5,7 @@ import com.solvd.animals.animal.Opossum;
 import com.solvd.animals.animal.Zebra;
 import com.solvd.animals.enums.AnimalDesc;
 import com.solvd.animals.functionalinterfaces.*;
+import com.solvd.animals.Aviary;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,11 +16,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Main {
 
-    private final static Logger LOGGER = LogManager.getLogger(Main.class);
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -44,6 +47,9 @@ public class Main {
         lambdaICatchNewbie();
         lambdaIPrintID();
         lambdaShowPerimeter();
+
+        //Runable:
+        runnableFood();
 
     }
 
@@ -81,7 +87,7 @@ public class Main {
 
     private static void collectionOfKangaroos() {
         Kangaroo firstKangoo = new Kangaroo("Kangaroo David", 15, 80, "Australia", 40);
-        Kangaroo secondKangoo = new Kangaroo("Kangoo Peter", 5, 40, "Australia", 30);
+        Kangaroo secondKangoo = new Kangaroo("Kangoo Peter", 5, 40, "Austria", 30);
 
         List<Kangaroo> kangaroos = new ArrayList<>();
 
@@ -137,16 +143,16 @@ public class Main {
 
     private static void findUniqueWords() {
         try {
-            File file = new File("D:/laba/src/main/java/resourses/lion.txt");
-            String string = StringUtils.lowerCase(FileUtils.readFileToString(file, StandardCharsets.UTF_8))
-                    .replaceAll("\\s*(\\s|,|!|'s|\\.)\\s*", " ");
-            String[] array = string.split(" ");
+            File file = new File("D:/laba/src/main/resourses/lion.txt");
+            String string = StringUtils.lowerCase(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
+            String replace = string.replaceAll("\\s*(\\s|,|!|'s|\\.)\\s*", " ");
+            String[] array = replace.split(" ");
             Set<String> hashSet = new HashSet(List.of(array));
             List<String> list = new ArrayList<>();
             for (String str : hashSet) {
-                list.add(str + " " + StringUtils.countMatches(string, str));
+                list.add(str + " " + StringUtils.countMatches(replace, str));
             }
-            FileUtils.writeLines(new File("D:/laba/src/main/java/resourses/lionRESULT2.txt"), list);
+            FileUtils.writeLines(new File("D:/laba/src/main/resourses/lionRESULT3.txt"), list);
         } catch (FileNotFoundException ex) {
             LOGGER.info(ex.getMessage());
         }
@@ -242,6 +248,22 @@ public class Main {
         };
 
         LOGGER.info("Perimeter: " + perimeter.calculate(aviary.getMaxWidth(), aviary.getMaxHeight(), aviary.getMaxLength()) + " m.");
+    }
+
+    private static void runnableFood() {
+        final int MAX_T = 3;
+
+        Food meat = new Food("meat", 1, "red");
+        Food grass = new Food("grass", 10, "green");
+
+        ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
+        pool.execute(meat);
+        pool.execute(grass);
+        pool.shutdown();
+    }
+
+    private static void reflection() {
+
     }
 
 }

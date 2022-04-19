@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 public class Zoo {
 
     private static final Logger LOGGER = LogManager.getLogger(Zoo.class);
-
     private int maxCounterAnimals;
     private String nameZoo;
 
@@ -29,10 +28,8 @@ public class Zoo {
         return nameZoo;
     }
 
-    public void showDescription(Zoo counterAnimals, Zoo nameOfZoo) {
-        int count = counterAnimals.getMaxCounterAnimals();
-        String zooName = nameOfZoo.getNameZoo();
-        LOGGER.info("Name of Zoo: " + zooName + ".\n" + "Maximum number of animals in the zoo: " + count);
+    public void showDescription(Zoo nameZoo, Zoo counterAnimals) {
+        LOGGER.info("Name of Zoo: " + getNameZoo() + ".\n" + "Maximum number of animals in the zoo: " + getMaxCounterAnimals());
     }
 
     public void setNameZoo(String nameZoo) {

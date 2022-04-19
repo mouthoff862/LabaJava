@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 public class Aviary {
 
     private static final Logger LOGGER = LogManager.getLogger(Aviary.class);
-
     private int idAviary;
     private int maxHeight;
     private int maxWidth;

@@ -35,7 +35,6 @@ public final class Lion extends Animals implements Runable {
         return ("This animal is a " + getAnimalType() + ".\n" + "He is from " + getCountry() + ".\n" + "Maximum adult weight can be up to " + getMaxWeight() + " kg.");
     }
 
-
     @Override
     public void printAnimalType() {
         LOGGER.info(getAnimalType() + " - description: ");

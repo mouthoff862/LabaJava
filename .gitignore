@@ -1,6 +1,6 @@
 # IntelliJ project files
 .idea
-laba.iml
+*iml
 out
 gen
 logs

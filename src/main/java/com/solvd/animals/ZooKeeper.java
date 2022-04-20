@@ -59,18 +59,18 @@ public class ZooKeeper implements IFeed {
     }
 
     public void catchANewbie() {
-            try {
-                if (experience <= 5) {
-                    throw new ExperienceException("This zookeeper is a newbie. He needs to work more!");
-                } else if (experience <= 30) {
-                    throw new ExperienceException("This man has great work experience!");
-                } else {
-                    LOGGER.info("I think it's time for this guy to retire.");
-                }
-            } catch (ExperienceException e) {
-                LOGGER.info(e.getMessage());
+        try {
+            if (experience <= 5) {
+                throw new ExperienceException("This zookeeper is a newbie. He needs to work more!");
+            } else if (experience <= 30) {
+                throw new ExperienceException("This man has great work experience!");
+            } else {
+                LOGGER.info("I think it's time for this guy to retire.");
             }
+        } catch (ExperienceException e) {
+            LOGGER.info(e.getMessage());
         }
+    }
 
 }
 

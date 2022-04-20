@@ -5,6 +5,6 @@ import com.solvd.animals.animal.Animals;
 @FunctionalInterface
 public interface Descriptionable {
 
-    String description(String animalType);
+    String description(String animalType, String animalTypeSecond);
 
 }

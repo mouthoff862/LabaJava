@@ -5,7 +5,6 @@ import com.solvd.animals.animal.Opossum;
 import com.solvd.animals.animal.Zebra;
 import com.solvd.animals.enums.AnimalDesc;
 import com.solvd.animals.functionalinterfaces.*;
-import com.solvd.animals.Aviary;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +13,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -42,14 +43,17 @@ public class Main {
         enums();
 
         //Functional Interfaces:
-        lambdaDescriptionable();
+
         lambdaFoodAble();
         lambdaICatchNewbie();
         lambdaIPrintID();
         lambdaShowPerimeter();
+        lambdaDescriptionable();
 
         //Runable:
         runnableFood();
+
+        reflection();
 
     }
 
@@ -184,13 +188,15 @@ public class Main {
         Opossum opossumFirst = new Opossum("Opossum Jack", 5, 4, "France", 1);
         Opossum opossumSecond = new Opossum("Opossum Piter", 4, 3, "Poland", 1);
 
-        Descriptionable desc = x -> {
-            String s = x;
-            return String.valueOf(s);
+        Descriptionable desc = (x, y) -> {
+            if (x.length() > y.length()) {
+                return String.valueOf(x);
+            } else {
+                return String.valueOf(y);
+            }
         };
 
-        LOGGER.info("Animal name: " + desc.description(opossumFirst.getAnimalType()));
-        LOGGER.info("Animal name: " + desc.description(opossumSecond.getAnimalType()));
+        LOGGER.info("Animal name: " + desc.description(opossumFirst.getAnimalType(), opossumSecond.getAnimalType()));
     }
 
     private static void lambdaFoodAble() {
@@ -232,12 +238,12 @@ public class Main {
 
         IPrintId ids = x -> {
             if (x != size) {
-                return "Size of aviaries: ";
+                return "Size of aviaries is incorrect : ";
             } else {
-                return "Size is correct";
+                return "Size is correct : ";
             }
         };
-        LOGGER.info(ids.apply(allAvies.size()) + " : " + size);
+        LOGGER.info(ids.apply(allAvies.size()) + " " + size);
     }
 
     private static void lambdaShowPerimeter() {
@@ -263,7 +269,12 @@ public class Main {
     }
 
     private static void reflection() {
+        Constructor[] consts = ZooKeeper.class.getDeclaredConstructors();
+        Constructor keeper = consts[0];
+        Field[] fields = ZooKeeper.class.getDeclaredFields();
 
+        LOGGER.info(consts);
+        LOGGER.info(fields);
     }
 
 }

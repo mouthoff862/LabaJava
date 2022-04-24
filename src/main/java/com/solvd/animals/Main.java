@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -51,9 +51,13 @@ public class Main {
         lambdaDescriptionable();
 
         //Runable:
-        runnableFood();
+        thread();
 
+        //Reflection:
         reflection();
+
+        //Deadlock:
+        deadlock();
 
     }
 
@@ -147,41 +151,29 @@ public class Main {
 
     private static void findUniqueWords() {
         try {
-            File file = new File("D:/laba/src/main/resourses/lion.txt");
-            String string = StringUtils.lowerCase(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
-            String replace = string.replaceAll("\\s*(\\s|,|!|'s|\\.)\\s*", " ");
-            String[] array = replace.split(" ");
-            Set<String> hashSet = new HashSet(List.of(array));
-            List<String> list = new ArrayList<>();
-            for (String str : hashSet) {
-                list.add(str + " " + StringUtils.countMatches(replace, str));
+            Set<String> set = new HashSet<String>();
+            String s = "Count of words";
+            String text = FileUtils.readFileToString(new File("D:/laba/src/main/resourses/lion.txt"), "UTF-8");
+            String[] words = StringUtils.split(text);
+            words = StringUtils.stripAll(words, ",.;!$#�?'%&/()=");
+            for (int i = 0; i < words.length; i++) {
+                set.add(words[i]);
             }
-            FileUtils.writeLines(new File("D:/laba/src/main/resourses/lionRESULT3.txt"), list);
+            for (String word : set) {
+                s = s + "\n" + word + "-> " + String.valueOf(StringUtils.countMatches(text, word));
+            }
+            FileUtils.writeStringToFile(new File("D:/laba/src/main/resourses/lionResult4.txt"), s, "UTF-8");
         } catch (FileNotFoundException ex) {
             LOGGER.info(ex.getMessage());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             LOGGER.info(e);
         }
     }
 
     private static void enums() {
-        LOGGER.info(AnimalDesc.LION.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.LION.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.OPOSSUM.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.OPOSSUM.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.ZEBRA.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.ZEBRA.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.SPARROW.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.SPARROW.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.AFRICA.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.AFRICA.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.ITALY.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.ITALY.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.FOOD_MEAT.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.FOOD_MEAT.getSubAnimals().getValue());
-        LOGGER.info(AnimalDesc.FOOD_GRASS.getMainAnimals().getValue());
-        LOGGER.info(AnimalDesc.FOOD_GRASS.getSubAnimals().getValue());
+        for (AnimalDesc a : AnimalDesc.values()) {
+            LOGGER.info(a.getMainAnimals().getValue() + " " + a.getSubAnimals().getValue());
+        }
     }
 
     private static void lambdaDescriptionable() {
@@ -256,7 +248,7 @@ public class Main {
         LOGGER.info("Perimeter: " + perimeter.calculate(aviary.getMaxWidth(), aviary.getMaxHeight(), aviary.getMaxLength()) + " m.");
     }
 
-    private static void runnableFood() {
+    private static void thread() {
         final int MAX_T = 3;
 
         Food meat = new Food("meat", 1, "red");
@@ -268,15 +260,43 @@ public class Main {
         pool.shutdown();
     }
 
-    private static void reflection() {
-        Constructor[] consts = ZooKeeper.class.getDeclaredConstructors();
-        Constructor keeper = consts[0];
-        Field[] fields = ZooKeeper.class.getDeclaredFields();
+    private static void deadlock() {
+        Food food = new Food("Grass", 52, "green");
+        Food foodSecond = new Food("Meat", 10, "red");
 
-        LOGGER.info(consts);
-        LOGGER.info(fields);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                food.run();
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                foodSecond.printName(foodSecond);
+            }
+        }).start();
     }
 
+    private static void reflection() {
+        Zoo classZoo = new Zoo();
+        Class<Zoo> cls = (Class<Zoo>) classZoo.getClass();
+        Method[] methods = cls.getMethods();
+        for (Method method : methods) {
+            LOGGER.info("Method name : " + method.getName());
+            LOGGER.info("Return type : " +
+                    method.getReturnType().getName());
+
+            Class<Zoo>[] params = (Class<Zoo>[]) method.getParameterTypes();
+            LOGGER.info("Parameters : ");
+            for (Class<Zoo> paramType : params) {
+                LOGGER.info(" " + paramType.getName());
+            }
+        }
+    }
 }
+
+
 
 

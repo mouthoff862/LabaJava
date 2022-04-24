@@ -50,9 +50,6 @@ public class Main {
         lambdaShowPerimeter();
         lambdaDescriptionable();
 
-        //Runable:
-        thread();
-
         //Reflection:
         reflection();
 
@@ -246,18 +243,6 @@ public class Main {
         };
 
         LOGGER.info("Perimeter: " + perimeter.calculate(aviary.getMaxWidth(), aviary.getMaxHeight(), aviary.getMaxLength()) + " m.");
-    }
-
-    private static void thread() {
-        final int MAX_T = 3;
-
-        Food meat = new Food("meat", 1, "red");
-        Food grass = new Food("grass", 10, "green");
-
-        ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
-        pool.execute(meat);
-        pool.execute(grass);
-        pool.shutdown();
     }
 
     private static void deadlock() {

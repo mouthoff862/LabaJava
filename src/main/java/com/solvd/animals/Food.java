@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Food extends Thread implements Runnable {
+public class Food {
     private static final Logger LOGGER = LogManager.getLogger(Food.class);
     private String foodName;
     private int maxWeight;
@@ -42,7 +42,6 @@ public class Food extends Thread implements Runnable {
         return color;
     }
 
-    @Override
     public synchronized void run() {
         try {
             Date d = new Date();

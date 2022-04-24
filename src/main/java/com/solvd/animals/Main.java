@@ -174,7 +174,7 @@ public class Main {
     }
 
     private static void lambdaDescriptionable() {
-        Opossum opossumFirst = new Opossum("Opossum Jack", 5, 4, "France", 1);
+        Opossum opossumFirst = new Opossum("Opossum JAX", 5, 4, "France", 1);
         Opossum opossumSecond = new Opossum("Opossum Piter", 4, 3, "Poland", 1);
 
         Descriptionable desc = (x, y) -> {

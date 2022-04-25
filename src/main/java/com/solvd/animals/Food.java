@@ -56,6 +56,6 @@ public class Food {
     }
 
     public synchronized void runBack(Food name) {
-        LOGGER.info("Meal: " + getFoodName());
+        LOGGER.info("Meal: " + name.getFoodName());
     }
 }

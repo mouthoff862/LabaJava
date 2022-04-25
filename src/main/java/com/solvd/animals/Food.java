@@ -54,7 +54,7 @@ public class Food {
         }
     }
 
-    public synchronized void printName(Food name) {
+    public synchronized void printName() {
         String food = "Grass";
         LOGGER.info("Meal: " + food);
     }

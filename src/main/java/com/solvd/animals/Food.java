@@ -42,20 +42,20 @@ public class Food {
         return color;
     }
 
-    public synchronized void run() {
+    public synchronized void run(Food name) {
         try {
             Date d = new Date();
             SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss");
             LOGGER.info("Date when the " +
                     getFoodName() + " was arrived : " + ft.format(d));
             Thread.sleep(1000);
+            name.runBack(this);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public synchronized void printName() {
-        String food = "Grass";
-        LOGGER.info("Meal: " + food);
+    public synchronized void runBack(Food name) {
+        LOGGER.info("Meal: " + getFoodName());
     }
 }

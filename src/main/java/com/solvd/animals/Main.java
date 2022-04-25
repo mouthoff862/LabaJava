@@ -252,14 +252,14 @@ public class Main {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                foodSecond.printName();
+                food.run(foodSecond);
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                food.run();
+                foodSecond.run(food);
             }
         }).start();
     }

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hospital>
+
+    <doctors>
+        <doctor id="1">
+            <name>Tom Nuke</name>
+            <position>therapist</position>
+            <age>25</age>
+        </doctor>
+        <doctor id="2">
+            <name>Robb Stark</name>
+            <position>otolaryngologist</position>
+            <age>40</age>
+        </doctor>
+        <doctor id="3">
+            <name>Trevor Philip</name>
+            <position>surgeon</position>
+            <age>45</age>
+        </doctor>
+        <doctor id="4">
+            <name>Devin Weston</name>
+            <position>neurologist</position>
+            <age>45</age>
+        </doctor>
+        <doctor id="5">
+            <id>5</id>
+            <name>John Marston</name>
+            <position>therapist</position>
+            <age>18</age>
+        </doctor>
+    </doctors>
+
+    <nurses>
+        <nurse id="1">
+            <name>Amanda De Santa</name>
+            <age>30</age>
+        </nurse>
+        <nurse id="2">
+            <name>Abigail Marston</name>
+            <age>25</age>
+        </nurse>
+        <nurse id="3">
+            <name>Tilly Jackson</name>
+            <age>40</age>
+        </nurse>
+        <nurse id="4">
+            <name>Jill Valentine</name>
+            <age>17</age>
+        </nurse>
+        <nurse id="5">
+            <name>Claire Redfield</name>
+            <age>22</age>
+        </nurse>
+        <nurse id="6">
+            <name>Rebecca Chambers</name>
+            <age>18</age>
+        </nurse>
+    </nurses>
+
+    <patients>
+        <patient id="1">
+            <name>Leopold Strauss</name>
+            <email>Leopold_Strauss@gmail.com</email>
+            <age>40</age>
+        </patient>
+        <patient id="2">
+            <name>Andrew Milton</name>
+            <email>Andrew_Milton@gmail.com</email>
+            <age>45</age>
+        </patient>
+        <patient id="3">
+            <name>Mary Linton</name>
+            <emai>Mary_Linton@gmail.com</emai>
+            <age>40</age>
+        </patient>
+        <patient id="4">
+            <name>Mary Dragonborn</name>
+            <email>mary.dragon@gmail.com</email>
+            <age>45</age>
+        </patient>
+    </patients>
+
+    <departments>
+        <department id="1">
+            <name>Neurology</name>
+        </department>
+        <department id="2">
+            <name>Surgery</name>
+        </department>
+        <department id="3">
+            <name>Otolaryngology</name>
+        </department>
+        <department id="4">
+            <name>Therapy</name>
+        </department>
+    </departments>
+
+    <medicines>
+        <medicine id="1">
+            <name>Ceftriaxone</name>
+            <used>not used</used>
+        </medicine>
+        <medicine id="2">
+            <name>Mafosfamide</name>
+            <used>not used</used>
+        </medicine>
+    </medicines>
+
+    <cheks></cheks>
+    <cleaners></cleaners>
+    <diagnoses></diagnoses>
+    <hospital_rooms></hospital_rooms>
+    <hospital_treatments></hospital_treatments>
+    <patient_charts></patient_charts>
+    <patient_services></patient_services>
+    <prices></prices>
+    <therapies></therapies>
+    <visits></visits>
+</hospital>

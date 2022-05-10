@@ -50,13 +50,17 @@ UPDATE Patients SET Address='Cleveland' WHERE id=2;
 UPDATE Patients SET Address='Grand Rapids' WHERE id=3;
 ALTER TABLE Patients RENAME COLUMN Address to address;
 
-ALTER TABLE Departments ADD City VARCHAR(45) NULL;
+ALTER TABLE Departments ADD location VARCHAR(45) NULL;
 ALTER TABLE Departments RENAME COLUMN City to location;
+alter table departments drop column location;
 ALTER TABLE Departments ALTER COLUMN location SET DEFAULT 'New York';
+-- alter table departments alter column location set default 'New York';
+ALTER TABLE Departments MODIFY COLUMN location VARCHAR(45) NULL DEFAULT 'New York';
+ALTER TABLE Departments CHANGE COLUMN location location VARCHAR(255) NULL DEFAULT 'New York';
 
 ALTER TABLE Medicines ADD used VARCHAR(45) DEFAULT 'not used';
 
-SELECT avg(age) AS avg_age FROM Doctors WHERE name != 'Drake Nuke';
+SELECT avg(age) AS avg_age FROM Doctors WHERE age > 35;
 SELECT avg(age) AS avg_age FROM Doctors;
 SELECT min(age) AS min_age FROM Doctors;
 SELECT max(age) AS max_age FROM Doctors;
@@ -67,10 +71,14 @@ SELECT count(*) AS count_age FROM Doctors WHERE age > 35;
 SELECT min(age), name AS min_age FROM Patients GROUP BY name HAVING min(age) > 32;
 SELECT max(age), name AS avg_age FROM Patients GROUP BY name HAVING max(age) < 35;
 SELECT count(*), name AS count_age FROM Patients GROUP BY name HAVING name != 'Leopold Strauss';
-SELECT count(id), name AS count_name FROM Patients GROUP BY name HAVING name != 'Mary Dragonborn';
+SELECT count(id), name AS count_name FROM Patients GROUP By name != 'Mary Dragonborn';
 SELECT count(id), name FROM Patients GROUP BY name HAVING count(id) < 3 ORDER BY count(id) DESC;
 SELECT id, name, count(age) age FROM Patients GROUP BY age HAVING max(age) < 40;
 SELECT id, name, avg(age) age FROM Patients GROUP BY name HAVING age BETWEEN 30 AND 40;
+select * 
+from doctors
+where age = (select max(age) as max_age from doctors);
+
 
 SELECT * FROM Patients JOIN Doctors USING(id);
 SELECT * FROM Patients RIGHT JOIN Doctors USING(id);

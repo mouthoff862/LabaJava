@@ -1,6 +1,7 @@
 package com.solvd.hospital.jdbcMySqlImpl;
 
 import com.solvd.hospital.dao.IBaseDAO;
+import com.solvd.hospital.entities.Doctor;
 import com.solvd.hospital.entities.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class PatientDAO implements IBaseDAO<Patient> {
+public class DoctorDAO implements IBaseDAO<Doctor> {
 
-    private final static Logger LOGGER = LogManager.getLogger(PatientDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(DoctorDAO.class);
     private Connection conn = null;
     private ResultSet rs = null;
     private PreparedStatement pr = null;
@@ -33,19 +34,19 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public Patient getById(int id) {
-        Patient p = new Patient();
+    public Doctor getById(int id) {
+        Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
-            pr = conn.prepareStatement("SELECT * FROM Patients WHERE id = ?");
+            pr = conn.prepareStatement("SELECT * FROM Doctors WHERE id = ?");
             pr.setInt(1, id);
             pr.execute();
             rs = pr.getResultSet();
             while (rs.next()) {
-                p.setId(rs.getInt("id"));
-                p.setName(rs.getString("name"));
-                p.setEmail(rs.getString("email"));
-                p.setAge(rs.getInt("age"));
+                d.setId(rs.getInt("id"));
+                d.setName(rs.getString("name"));
+                d.setPosition(rs.getString("email"));
+                d.setAge(rs.getInt("age"));
             }
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -64,17 +65,17 @@ public class PatientDAO implements IBaseDAO<Patient> {
                 LOGGER.info(ex.getMessage());
             }
         }
-        return p;
+        return d;
     }
 
     @Override
-    public void insert(Patient patient) {
-        Patient p = new Patient();
+    public void insert(Doctor doctor) {
+        Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
-            pr = conn.prepareStatement("INSERT INTO Patients (name, email, age) VALUES (?, ?, ?)");
+            pr = conn.prepareStatement("INSERT INTO Doctors (name, position, age) VALUES (?, ?, ?)");
             pr.setString(1, rs.getString("name"));
-            pr.setString(2, rs.getString("email"));
+            pr.setString(2, rs.getString("position"));
             pr.setInt(3, rs.getInt("age"));
             pr.executeUpdate();
         } catch (SQLException e) {
@@ -97,14 +98,14 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public void update(Patient patient) {
-        Patient p = new Patient();
+    public void update(Doctor doctor) {
+        Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
-            pr = conn.prepareStatement("UPDATE Patients SET name=? email=? age=? WHERE id=?");
-            pr.setString(1, patient.getName());
-            pr.setString(2, patient.getEmail());
-            pr.setInt(3, patient.getAge());
+            pr = conn.prepareStatement("UPDATE Doctors SET name=? position=? age=? WHERE id=?");
+            pr.setString(1, doctor.getName());
+            pr.setString(2, doctor.getPosition());
+            pr.setInt(3, doctor.getAge());
             pr.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -127,10 +128,10 @@ public class PatientDAO implements IBaseDAO<Patient> {
 
     @Override
     public void remove(int id) {
-        Patient p = new Patient();
+        Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
-            pr = conn.prepareStatement("DELETE FROM Patients WHERE id=?");
+            pr = conn.prepareStatement("DELETE FROM Doctors WHERE id=?");
             pr.setInt(1, rs.getInt("id"));
             pr.executeUpdate();
         } catch (SQLException e) {
@@ -150,23 +151,24 @@ public class PatientDAO implements IBaseDAO<Patient> {
                 LOGGER.info(ex.getMessage());
             }
         }
+
     }
 
     @Override
-    public List<Patient> selectAll() {
-        List<Patient> patients = new ArrayList<>();
-        Patient p = new Patient();
+    public List<Doctor> selectAll() {
+        List<Doctor> doctors = new ArrayList<>();
+        Doctor doc = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
-            pr = conn.prepareStatement("SELECT * FROM Patients");
+            pr = conn.prepareStatement("SELECT * FROM Doctors");
             pr.execute();
             rs = pr.getResultSet();
             while (rs.next()) {
-                p.setId(rs.getInt("id"));
-                p.setName(rs.getString("name"));
-                p.setEmail(rs.getString("email"));
-                p.setAge(rs.getInt("age"));
-                patients.add(p);
+                doc.setId(rs.getInt("id"));
+                doc.setName(rs.getString("name"));
+                doc.setPosition(rs.getString("position"));
+                doc.setAge(rs.getInt("age"));
+                doctors.add(doc);
             }
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -185,6 +187,6 @@ public class PatientDAO implements IBaseDAO<Patient> {
                 LOGGER.info(ex.getMessage());
             }
         }
-        return patients;
+        return doctors;
     }
 }

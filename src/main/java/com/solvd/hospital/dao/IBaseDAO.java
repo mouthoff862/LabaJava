@@ -1,5 +1,6 @@
 package com.solvd.hospital.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IBaseDAO<T> {

@@ -16,6 +16,10 @@ public class Patient {
     public Patient() {
     }
 
+    public Patient(int id) {
+        this.id = id;
+    }
+
     public Patient(int id, String name, String email, int age) {
         this.id = id;
         this.name = name;

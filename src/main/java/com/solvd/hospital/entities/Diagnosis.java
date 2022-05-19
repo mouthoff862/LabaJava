@@ -1,7 +1,5 @@
 package com.solvd.hospital.entities;
 
-import java.util.List;
-
 public class Diagnosis {
     private int id;
     private String name;

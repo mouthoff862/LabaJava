@@ -1,7 +1,5 @@
 package com.solvd.hospital.entities;
 
-import java.util.List;
-
 public class Nurse {
     private int id;
     private String name;
@@ -30,4 +28,11 @@ public class Nurse {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Nurse{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

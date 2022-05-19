@@ -2,7 +2,6 @@ package com.solvd.hospital.jdbcMySqlImpl;
 
 import com.solvd.hospital.dao.IBaseDAO;
 import com.solvd.hospital.entities.Doctor;
-import com.solvd.hospital.entities.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -38,4 +38,13 @@ public class Price {
     public void setPatientServices(List<PatientService> patientServices) {
         this.patientServices = patientServices;
     }
+
+    @Override
+    public String toString() {
+        return "Price{" +
+                "id=" + id +
+                ", price=" + price +
+                ", patientServices=" + patientServices +
+                '}';
+    }
 }

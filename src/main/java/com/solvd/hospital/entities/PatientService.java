@@ -1,7 +1,5 @@
 package com.solvd.hospital.entities;
 
-import java.util.List;
-
 public class PatientService {
     private int id;
     private String serviceName;
@@ -28,5 +26,13 @@ public class PatientService {
 
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
+    }
+
+    @Override
+    public String toString() {
+        return "PatientService{" +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
+                '}';
     }
 }

@@ -48,4 +48,15 @@ public class Visit {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", patients=" + patients +
+                ", doctors=" + doctors +
+                ", date=" + date +
+                '}';
+    }
+
 }

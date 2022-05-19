@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<chart>
+    <id>1</id>
+    <patient id="1">
+        <name>Andrew Milton</name>
+        <email>Andrew_Milton@gmail.com</email>
+        <age>45</age>
+    </patient>
+    <visit>
+        <doctor>
+            <doctor>John Marston</doctor>
+        </doctor>
+        <year>2022</year>
+    </visit>
+    <therapy>
+        <doctor>
+            <doctor>John Marston</doctor>
+        </doctor>
+        <nurse>
+            <nurse>Abigail Marston</nurse>
+        </nurse>
+        <medicine>
+            <name>Panangin</name>
+            <portion>10</portion>
+        </medicine>
+        <medicine>
+            <name>Norvask</name>
+            <portion>20</portion>
+        </medicine>
+    </therapy>
+    <diagnosis>
+        <diagnosis>Hypertension</diagnosis>
+    </diagnosis>
+</chart>

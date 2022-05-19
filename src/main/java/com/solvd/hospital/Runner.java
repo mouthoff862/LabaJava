@@ -1,16 +1,17 @@
 package com.solvd.hospital;
 
 import com.solvd.hospital.connector.ConnectionPool;
-import com.solvd.hospital.entities.Patient;
-import com.solvd.hospital.jdbcMySqlImpl.PatientDAO;
+import com.solvd.hospital.entities.*;
+import com.solvd.hospital.jaxb.Chart;
+import com.solvd.hospital.jaxb.JaxbToWrite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import jakarta.xml.bind.JAXBException;
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
@@ -18,7 +19,6 @@ import javax.xml.stream.events.XMLEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +28,24 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        Connection conn = ConnectionPool.getConnection();
-        if (conn != null) {
-           LOGGER.info("The connection is taken");
-        }
-
-        String file = "D:/laba/src/main/resourses/hospital.xml";
+        String file = (System.getProperty("user.dir") + "/src/main/resourses/hospital.xml");
         List<Patient> patientList = parserForFile(file);
         for (Patient p : patientList) {
             LOGGER.info(p.toString());
+        }
+
+        marshalJaxb();
+    }
+
+
+    private static void marshalJaxb() {
+        JaxbToWrite.marshal();
+        Chart chartOne = new Chart();
+        try {
+            chartOne= JaxbToWrite.unmarshal();
+            LOGGER.info(chartOne);
+        } catch (JAXBException | FileNotFoundException e) {
+            LOGGER.info(e);
         }
     }
 
@@ -63,9 +72,9 @@ public class Runner {
                         xmlEvent = reader.nextEvent();
                         p.setEmail(xmlEvent.asCharacters().getData());
                     } else if (startElement.getName().getLocalPart().equals("age")) {
-                    xmlEvent = reader.nextEvent();
-                    p.setAge(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                }
+                        xmlEvent = reader.nextEvent();
+                        p.setAge(Integer.parseInt(xmlEvent.asCharacters().getData()));
+                    }
                 }
                 if (xmlEvent.isEndElement()) {
                     EndElement endElement = xmlEvent.asEndElement();
@@ -79,6 +88,7 @@ public class Runner {
         }
         return patients;
     }
+
 }
 
 

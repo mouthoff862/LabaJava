@@ -1,5 +1,6 @@
 package com.solvd.hospital.jaxb;
 
+import com.solvd.hospital.entities.Patient;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -60,7 +61,7 @@ public class JaxbToWrite {
             JAXBContext context = JAXBContext.newInstance(Chart.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(chart, new File(System.getProperty("user.dir") + "/src/main/resourses/Chart.xml"));
+            marshaller.marshal(chart, new File(System.getProperty("user.dir") + "/src/main/resources/Chart.xml"));
         } catch (JAXBException e) {
             LOGGER.info(e);
         }
@@ -69,7 +70,7 @@ public class JaxbToWrite {
     public static Chart unmarshal() throws JAXBException, FileNotFoundException {
         JAXBContext jaxbContext = JAXBContext.newInstance(Chart.class);
         return (Chart) jaxbContext.createUnmarshaller()
-                .unmarshal(new FileReader(System.getProperty("user.dir") + "/src/main/resourses/Chart.xml"));
+                .unmarshal(new FileReader(System.getProperty("user.dir") + "/src/main/resources/Chart.xml"));
     }
 
 }

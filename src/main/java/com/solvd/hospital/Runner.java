@@ -1,6 +1,5 @@
 package com.solvd.hospital;
 
-import com.solvd.hospital.connector.ConnectionPool;
 import com.solvd.hospital.entities.*;
 import com.solvd.hospital.jaxb.Chart;
 import com.solvd.hospital.jaxb.JaxbToWrite;
@@ -18,7 +17,6 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +26,15 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        String file = (System.getProperty("user.dir") + "/src/main/resourses/hospital.xml");
-        List<Patient> patientList = parserForFile(file);
-        for (Patient p : patientList) {
-            LOGGER.info(p.toString());
-        }
+        LOGGER.info("Hello");
 
-        marshalJaxb();
+    //    String file = (System.getProperty("user.dir") + "/src/main/resources/hospital.xml");
+    //    List<Patient> patientList = parserForFile(file);
+    //    for (Patient p : patientList) {
+     //       LOGGER.info(p.toString());
+     //   }
+
+       // marshalJaxb();
     }
 
 

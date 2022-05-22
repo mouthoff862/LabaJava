@@ -26,7 +26,7 @@ public class ConnectionPool {
     static {
         try {
             prop = new Properties();
-            prop.load(new FileReader("D:/laba/src/main/resourses/db.properties"));
+            prop.load(new FileReader(System.getProperty("user.dir") + "/src/main/resources/hospital.xml"));
         } catch (IOException e) {
             LOGGER.info(e.getMessage());
         }
@@ -47,4 +47,5 @@ public class ConnectionPool {
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
+
 }

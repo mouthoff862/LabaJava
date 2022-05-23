@@ -6,14 +6,15 @@ public class PatientChart {
     private int id;
     private Patient patient;
     private Doctor doctor;
-    private List<Diagnosis> diagnoses;
+    private Diagnosis diagnosis;
 
     public PatientChart() {}
 
-    public PatientChart(int id, Patient patient, Doctor doctor) {
+    public PatientChart(int id, Patient patient, Doctor doctor, Diagnosis diagnosis) {
         this.id = id;
         this.patient = patient;
         this.doctor = doctor;
+        this.diagnosis = diagnosis;
     }
 
     public int getId() {
@@ -40,11 +41,12 @@ public class PatientChart {
         this.doctor = doctor;
     }
 
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
+    public void setDiagnosis(Diagnosis diagnosis) {
+        this.diagnosis = diagnosis;
     }
+
 }

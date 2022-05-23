@@ -75,9 +75,7 @@ SELECT count(id), name AS count_name FROM Patients GROUP By name != 'Mary Dragon
 SELECT count(id), name FROM Patients GROUP BY name HAVING count(id) < 3 ORDER BY count(id) DESC;
 SELECT id, name, count(age) age FROM Patients GROUP BY age HAVING max(age) < 40;
 SELECT id, name, avg(age) age FROM Patients GROUP BY name HAVING age BETWEEN 30 AND 40;
-select * 
-from doctors
-where age = (select max(age) as max_age from doctors);
+select * from doctors where age = (select max(age) as max_age from doctors);
 
 
 SELECT * FROM Patients JOIN Doctors USING(id);

@@ -1,4 +1,4 @@
-package com.solvd.hospital.jdbcMySqlImpl;
+package com.solvd.hospital.jdbcmysqlimpl;
 
 import com.solvd.hospital.dao.IBaseDAO;
 import com.solvd.hospital.entities.Patient;
@@ -87,9 +87,6 @@ public class PatientDAO implements IBaseDAO<Patient> {
                 if (pr != null) {
                     pr.close();
                 }
-                if (rs != null) {
-                    rs.close();
-                }
             } catch (SQLException ex) {
                 LOGGER.info(ex.getMessage());
             }
@@ -116,9 +113,6 @@ public class PatientDAO implements IBaseDAO<Patient> {
                 if (pr != null) {
                     pr.close();
                 }
-                if (rs != null) {
-                    rs.close();
-                }
             } catch (SQLException ex) {
                 LOGGER.info(ex.getMessage());
             }
@@ -142,9 +136,6 @@ public class PatientDAO implements IBaseDAO<Patient> {
                 }
                 if (pr != null) {
                     pr.close();
-                }
-                if (rs != null) {
-                    rs.close();
                 }
             } catch (SQLException ex) {
                 LOGGER.info(ex.getMessage());

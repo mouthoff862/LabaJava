@@ -26,7 +26,7 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        LOGGER.info("Hello");
+        LOGGER.error("Hello");
 
     //    String file = (System.getProperty("user.dir") + "/src/main/resources/hospital.xml");
     //    List<Patient> patientList = parserForFile(file);

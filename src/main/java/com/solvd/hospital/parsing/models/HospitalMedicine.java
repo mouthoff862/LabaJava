@@ -1,11 +1,16 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "medicine")
 @XmlType(propOrder = {"name", "portion"})
+@JsonRootName(value = "medicine")
+@JsonPropertyOrder({"name", "portion"})
 public class HospitalMedicine {
     private String name;
     private int portion;
@@ -15,6 +20,7 @@ public class HospitalMedicine {
     }
 
     @XmlElement(name = "name")
+    @JsonProperty
     public void setName(String name) {
         this.name = name;
     }
@@ -24,6 +30,7 @@ public class HospitalMedicine {
     }
 
     @XmlElement(name = "portion")
+    @JsonProperty
     public void setPortion(int portion) {
         this.portion = portion;
     }

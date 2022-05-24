@@ -1,5 +1,6 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
@@ -23,6 +24,7 @@ public class HospitalDoctor {
     }
 
     @XmlElement(name = "doctor")
+    @JsonProperty
     public void setName(String name) {
         this.name = name;
     }

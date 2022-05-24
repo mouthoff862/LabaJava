@@ -1,12 +1,14 @@
 package com.solvd.hospital;
 
 import com.solvd.hospital.entities.*;
-import com.solvd.hospital.jaxb.Chart;
-import com.solvd.hospital.jaxb.JaxbToWrite;
+import com.solvd.hospital.parsing.JacksonRunner;
+import com.solvd.hospital.parsing.JaxbToWrite;
+import com.solvd.hospital.parsing.models.Chart;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import jakarta.xml.bind.JAXBException;
+
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -26,15 +28,15 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        LOGGER.error("Hello");
+        //    String file = (System.getProperty("user.dir") + "/src/main/resources/hospital.xml");
+        //    List<Patient> patientList = parserForFile(file);
+        //    for (Patient p : patientList) {
+        //       LOGGER.info(p.toString());
+        //   }
 
-    //    String file = (System.getProperty("user.dir") + "/src/main/resources/hospital.xml");
-    //    List<Patient> patientList = parserForFile(file);
-    //    for (Patient p : patientList) {
-     //       LOGGER.info(p.toString());
-     //   }
-
-       // marshalJaxb();
+        // marshalJaxb();
+        JacksonRunner.jsonMarshalling();
+        JacksonRunner.jsonUnmarshalling();
     }
 
 
@@ -42,7 +44,7 @@ public class Runner {
         JaxbToWrite.marshal();
         Chart chartOne = new Chart();
         try {
-            chartOne= JaxbToWrite.unmarshal();
+            chartOne = JaxbToWrite.unmarshal();
             LOGGER.info(chartOne);
         } catch (JAXBException | FileNotFoundException e) {
             LOGGER.info(e);

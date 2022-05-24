@@ -1,7 +1,5 @@
 package com.solvd.hospital.entities;
 
-import java.util.List;
-
 public class PatientChart {
     private int id;
     private Patient patient;

@@ -1,9 +1,12 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "diagnosis")
+@JsonRootName(value = "diagnosis")
 public class DiagnosisPatient {
 
     private String diagnosis;
@@ -13,6 +16,7 @@ public class DiagnosisPatient {
     }
 
     @XmlElement(name = "diagnosis")
+    @JsonProperty
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
     }

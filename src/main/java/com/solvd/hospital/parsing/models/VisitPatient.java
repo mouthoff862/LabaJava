@@ -1,5 +1,9 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
@@ -8,6 +12,8 @@ import java.util.Date;
 
 @XmlRootElement(name = "visit")
 @XmlType(propOrder = {"doctor", "year"})
+@JsonRootName(value = "visit")
+@JsonPropertyOrder({"doctor", "date_of_visit", "year"})
 public class VisitPatient {
     private HospitalDoctor doctor;
     private Date dateOfVisit;
@@ -18,6 +24,7 @@ public class VisitPatient {
     }
 
     @XmlElement(name = "doctor")
+    @JsonProperty
     public void setDoctor(HospitalDoctor doctor) {
         this.doctor = doctor;
     }
@@ -28,6 +35,8 @@ public class VisitPatient {
 
     // @XmlElement(name = "date_of_visit")
     // @XmlJavaTypeAdapter(DateAdapter.class)
+    @JsonProperty("date_of_visit")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="mm/dd/yyyy")
     public void setDateOfVisit(Date dateOfVisit) {
         this.dateOfVisit = dateOfVisit;
     }
@@ -37,6 +46,7 @@ public class VisitPatient {
     }
 
     @XmlElement(name = "year")
+    @JsonProperty
     public void setYear(int year) {
         this.year = year;
     }

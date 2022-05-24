@@ -1,0 +1,38 @@
+[ {
+  "id" : 1,
+  "patient" : {
+    "id" : 1,
+    "name" : "Andrew Milton",
+    "email" : "Andrew_Milton@gmail.com",
+    "age" : 45
+  },
+  "visit" : {
+    "doctor" : {
+      "id" : 1,
+      "name" : "John Marston",
+      "position" : "Therapist"
+    },
+    "date_of_visit" : "00/01/1970",
+    "year" : 2022
+  },
+  "therapy" : {
+    "doctor" : {
+      "id" : 1,
+      "name" : "John Marston",
+      "position" : "Therapist"
+    },
+    "nurse" : {
+      "name" : "Abigail Marston"
+    },
+    "hospitalMedicine" : [ {
+      "name" : "Panangin",
+      "portion" : 10
+    }, {
+      "name" : "Norvask",
+      "portion" : 20
+    } ]
+  },
+  "diagnosis" : {
+    "diagnosis" : "Hypertension"
+  }
+} ]

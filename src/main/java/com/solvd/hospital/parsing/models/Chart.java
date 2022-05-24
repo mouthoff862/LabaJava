@@ -1,11 +1,16 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "chart")
 @XmlType(propOrder = {"id", "patient", "visit", "therapy", "diagnosis"})
+@JsonRootName(value = "chart")
+@JsonPropertyOrder({"id", "patient", "visit", "therapy", "diagnosis"})
 public class Chart {
     private Long id;
     private PatientClass patient;
@@ -18,6 +23,7 @@ public class Chart {
     }
 
     @XmlElement(name = "id")
+    @JsonProperty
     public void setId(Long id) {
         this.id = id;
     }
@@ -27,6 +33,7 @@ public class Chart {
     }
 
     @XmlElement(name = "patient")
+    @JsonProperty
     public void setPatient(PatientClass patient) {
         this.patient = patient;
     }
@@ -36,6 +43,7 @@ public class Chart {
     }
 
     @XmlElement(name = "visit")
+    @JsonProperty
     public void setVisit(VisitPatient visit) {
         this.visit = visit;
     }
@@ -45,6 +53,7 @@ public class Chart {
     }
 
     @XmlElement(name = "therapy")
+    @JsonProperty
     public void setTherapy(PatientTherapy therapy) {
         this.therapy = therapy;
     }
@@ -54,6 +63,7 @@ public class Chart {
     }
 
     @XmlElement(name = "diagnosis")
+    @JsonProperty
     public void setDiagnosis(DiagnosisPatient diagnosis) {
         this.diagnosis = diagnosis;
     }

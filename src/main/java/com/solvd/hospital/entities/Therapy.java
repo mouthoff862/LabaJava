@@ -1,18 +1,23 @@
 package com.solvd.hospital.entities;
 
-import java.util.List;
-
 public class Therapy {
     private int id;
-    private List<Patient> patients;
-    private List<Nurse> nurses;
-    private List<Medicine> medicines;
+    private String patient;
+    private String nurse;
+    private String medicine;
 
     public Therapy() {
     }
 
     public Therapy(int id) {
         this.id = id;
+    }
+
+    public Therapy(int id, String patient, String nurse, String medicine) {
+        this.id = id;
+        this.patient = patient;
+        this.nurse = nurse;
+        this.medicine = medicine;
     }
 
     public int getId() {
@@ -23,27 +28,37 @@ public class Therapy {
         this.id = id;
     }
 
-    public List<Patient> getPatients() {
-        return patients;
+    public String getPatient() {
+        return patient;
     }
 
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
+    public void setPatient(String patient) {
+        this.patient = patient;
     }
 
-    public List<Nurse> getNurses() {
-        return nurses;
+    public String getNurse() {
+        return nurse;
     }
 
-    public void setNurses(List<Nurse> nurses) {
-        this.nurses = nurses;
+    public void setNurse(String nurse) {
+        this.nurse = nurse;
     }
 
-    public List<Medicine> getMedicines() {
-        return medicines;
+    public String getMedicine() {
+        return medicine;
     }
 
-    public void setMedicines(List<Medicine> medicines) {
-        this.medicines = medicines;
+    public void setMedicine(String medicine) {
+        this.medicine = medicine;
+    }
+
+    @Override
+    public String toString() {
+        return "Therapy{" +
+                "id=" + id +
+                ", patient='" + patient + '\'' +
+                ", nurse='" + nurse + '\'' +
+                ", medicine='" + medicine + '\'' +
+                '}';
     }
 }

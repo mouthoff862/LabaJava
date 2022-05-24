@@ -1,6 +1,6 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing;
 
-import com.solvd.hospital.entities.Patient;
+import com.solvd.hospital.parsing.models.*;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;

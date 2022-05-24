@@ -1,4 +1,4 @@
-package com.solvd.hospital.jaxb;
+package com.solvd.hospital.parsing.models;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 

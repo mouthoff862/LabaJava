@@ -1,9 +1,9 @@
-package com.solvd.hospital.jdbcmysqlimpl;
+package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.connector.ConnectionPool;
 import com.solvd.hospital.connector.ConnectionToDAO;
 import com.solvd.hospital.dao.IBaseDAO;
-import com.solvd.hospital.entities.Medicine;
+import com.solvd.hospital.entities.Cleaner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,27 +14,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
+public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
 
     private final static Logger LOGGER = LogManager.getLogger(CleanerDAO.class);
     private ConnectionPool connectionPool = getConnectionPool();
     private Connection conn;
     private ResultSet rs = null;
     private PreparedStatement pr = null;
-    Medicine medicine = new Medicine();
+    Cleaner cleaner = new Cleaner();
 
     @Override
-    public Medicine getById(int id) {
+    public Cleaner getById(int id) {
         try {
             conn = connectionPool.getConnection();
-            pr = conn.prepareStatement("SELECT * FROM Medicines WHERE id = ?");
+            pr = conn.prepareStatement("SELECT * FROM Cleaners WHERE id = ?");
             pr.setInt(1, id);
             pr.execute();
             rs = pr.getResultSet();
             while (rs.next()) {
-                medicine.setId(rs.getInt("id"));
-                medicine.setMedicineName(rs.getString("name"));
-                medicine.setUsed(rs.getString("used"));
+                cleaner.setId(rs.getInt("id"));
+                cleaner.setName(rs.getString("name"));
             }
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -47,16 +46,15 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
                 LOGGER.info(e.getMessage());
             }
         }
-        return medicine;
+        return cleaner;
     }
 
     @Override
-    public void insert(Medicine medicine) {
+    public void insert(Cleaner cleaner) {
         try {
             conn = connectionPool.getConnection();
-            pr = conn.prepareStatement("INSERT INTO Medicines (medicine_name, used) VALUES (?, ?)");
-            pr.setString(1, rs.getString("medicine_name"));
-            pr.setString(2, rs.getString("used"));
+            pr = conn.prepareStatement("INSERT INTO Cleaners (name) VALUES (?)");
+            pr.setString(1, rs.getString("name"));
             pr.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -72,12 +70,11 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     }
 
     @Override
-    public void update(Medicine medicine) {
+    public void update(Cleaner cleaner) {
         try {
             conn = connectionPool.getConnection();
-            pr = conn.prepareStatement("Update Medicines SET medicine_name=? used=? WHERE id=?");
-            pr.setString(1, medicine.getMedicineName());
-            pr.setString(2, medicine.getUsed());
+            pr = conn.prepareStatement("Update Cleaners SET name=? WHERE id=?");
+            pr.setString(1, cleaner.getName());
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
         } finally {
@@ -94,7 +91,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     public void remove(int id) {
         try {
             conn = connectionPool.getConnection();
-            pr = conn.prepareStatement("DELETE FROM Medicines WHERE id=?");
+            pr = conn.prepareStatement("DELETE FROM Cleaners WHERE id=?");
             pr.setInt(1, rs.getInt("id"));
             pr.executeUpdate();
         } catch (SQLException e) {
@@ -110,18 +107,17 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     }
 
     @Override
-    public List<Medicine> selectAll() {
-        List<Medicine> medicines = new ArrayList<>();
+    public List<Cleaner> selectAll() {
+        List<Cleaner> cleaners = new ArrayList<>();
         try {
             conn = connectionPool.getConnection();
-            pr = conn.prepareStatement("SELECT * FROM Medicines");
+            pr = conn.prepareStatement("SELECT * FROM Cleaners");
             pr.execute();
             rs = pr.getResultSet();
             while (rs.next()) {
-                medicine.setId(rs.getInt("id"));
-                medicine.setMedicineName(rs.getString("medicine_name"));
-                medicine.setUsed(rs.getString("used"));
-                medicines.add(medicine);
+                cleaner.setId(rs.getInt("id"));
+                cleaner.setName(rs.getString("name"));
+                cleaners.add(cleaner);
             }
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -134,7 +130,6 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
                 LOGGER.info(e.getMessage());
             }
         }
-        return medicines;
+        return cleaners;
     }
 }
-

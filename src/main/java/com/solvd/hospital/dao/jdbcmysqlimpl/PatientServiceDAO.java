@@ -1,9 +1,8 @@
-package com.solvd.hospital.jdbcmysqlimpl;
+package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.connector.ConnectionPool;
 import com.solvd.hospital.connector.ConnectionToDAO;
 import com.solvd.hospital.dao.IBaseDAO;
-import com.solvd.hospital.entities.Cleaner;
 import com.solvd.hospital.entities.PatientService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

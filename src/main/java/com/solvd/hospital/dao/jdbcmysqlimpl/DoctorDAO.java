@@ -1,4 +1,4 @@
-package com.solvd.hospital.jdbcmysqlimpl;
+package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.dao.IBaseDAO;
 import com.solvd.hospital.entities.Doctor;

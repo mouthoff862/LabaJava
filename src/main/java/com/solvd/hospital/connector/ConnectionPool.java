@@ -15,9 +15,9 @@ import java.util.Properties;
 public class ConnectionPool {
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private static Properties prop = new Properties();
-    private String url = prop.getProperty("db.url");
-    private String user = prop.getProperty("db.username");
-    private String password = prop.getProperty("db.password");
+    private static String url;
+    private static String user;
+    private static String password;
     private static int INITIAL_POOL_SIZE = 10;
     private static List<Connection> connectionPool = new ArrayList<>(INITIAL_POOL_SIZE);
     private List<Connection> usedConnections = new ArrayList<>();
@@ -26,7 +26,7 @@ public class ConnectionPool {
     static {
         try {
             prop = new Properties();
-            prop.load(new FileReader(System.getProperty("user.dir") + "/src/main/resources/hospital.xml"));
+            prop.load(new FileReader(System.getProperty("user.dir") + "/src/main/resources/db.properties"));
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }
@@ -39,7 +39,7 @@ public class ConnectionPool {
         this.url = url;
         this.user = user;
         this.password = password;
-        ConnectionPool.connectionPool = pool;
+        connectionPool = pool;
     }
 
     public static ConnectionPool create(String url, String user, String password) {

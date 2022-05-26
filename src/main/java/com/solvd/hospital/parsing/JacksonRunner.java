@@ -30,7 +30,7 @@ public class JacksonRunner {
         doctor.setPosition("Therapist");
         visit.setDoctor(doctor);
         visit.setYear(2022);
-       // visit.setDateOfVisit(new Date(10/10/2021));
+        visit.setDateOfVisit(new Date(10/10/2021));
 
         PatientTherapy therapy = new PatientTherapy();
         HospitalNurse nurse = new HospitalNurse();

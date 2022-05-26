@@ -12,7 +12,7 @@
       "name" : "John Marston",
       "position" : "Therapist"
     },
-    "date_of_visit" : "00/01/1970",
+    "date_of_visit" : null,
     "year" : 2022
   },
   "therapy" : {

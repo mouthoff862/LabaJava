@@ -45,4 +45,36 @@ public class HospitalTreatment {
     public void setHospitalRooms(List<HospitalRoom> hospitalRooms) {
         this.hospitalRooms = hospitalRooms;
     }
+
+    @Override
+    public String toString() {
+        return "HospitalTreatment{" +
+                "id=" + id +
+                ", patients=" + patients +
+                ", nurses=" + nurses +
+                ", hospitalRooms=" + hospitalRooms +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HospitalTreatment)) return false;
+
+        HospitalTreatment that = (HospitalTreatment) o;
+
+        if (id != that.id) return false;
+        if (patients != null ? !patients.equals(that.patients) : that.patients != null) return false;
+        if (nurses != null ? !nurses.equals(that.nurses) : that.nurses != null) return false;
+        return hospitalRooms != null ? hospitalRooms.equals(that.hospitalRooms) : that.hospitalRooms == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (patients != null ? patients.hashCode() : 0);
+        result = 31 * result + (nurses != null ? nurses.hashCode() : 0);
+        result = 31 * result + (hospitalRooms != null ? hospitalRooms.hashCode() : 0);
+        return result;
+    }
 }

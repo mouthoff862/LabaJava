@@ -2,7 +2,8 @@ package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.connector.ConnectionPool;
 import com.solvd.hospital.connector.ConnectionToDAO;
-import com.solvd.hospital.dao.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IMedicineDAO;
 import com.solvd.hospital.entities.Medicine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
+public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(CleanerDAO.class);
     private ConnectionPool connectionPool = getConnectionPool();
@@ -24,7 +25,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     Medicine medicine = new Medicine();
 
     @Override
-    public Medicine getById(int id) {
+    public Medicine getEntityById(int id) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("SELECT * FROM Medicines WHERE id = ?");
@@ -51,7 +52,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     }
 
     @Override
-    public void insert(Medicine medicine) {
+    public void createEntity(Medicine medicine) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("INSERT INTO Medicines (medicine_name, used) VALUES (?, ?)");
@@ -72,7 +73,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     }
 
     @Override
-    public void update(Medicine medicine) {
+    public void updateEntity(Medicine medicine) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("Update Medicines SET medicine_name=? used=? WHERE id=?");
@@ -91,7 +92,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     }
 
     @Override
-    public void remove(int id) {
+    public void removeEntity(int id) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Medicines WHERE id=?");
@@ -110,7 +111,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
     }
 
     @Override
-    public List<Medicine> selectAll() {
+    public List<Medicine> showAllMedicines() {
         List<Medicine> medicines = new ArrayList<>();
         try {
             conn = connectionPool.getConnection();
@@ -123,6 +124,7 @@ public class MedicineDAO extends ConnectionToDAO implements IBaseDAO<Medicine> {
                 medicine.setUsed(rs.getString("used"));
                 medicines.add(medicine);
             }
+            LOGGER.info("There is the list of medicies: ", medicines);
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
         } finally {

@@ -2,7 +2,7 @@ package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.connector.ConnectionPool;
 import com.solvd.hospital.connector.ConnectionToDAO;
-import com.solvd.hospital.dao.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.ICleanerDAO;
 import com.solvd.hospital.entities.Cleaner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
+public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(CleanerDAO.class);
     private ConnectionPool connectionPool = getConnectionPool();
@@ -24,7 +24,7 @@ public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
     Cleaner cleaner = new Cleaner();
 
     @Override
-    public Cleaner getById(int id) {
+    public Cleaner getEntityById(int id) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("SELECT * FROM Cleaners WHERE id = ?");
@@ -50,7 +50,7 @@ public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
     }
 
     @Override
-    public void insert(Cleaner cleaner) {
+    public void createEntity(Cleaner cleaner) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("INSERT INTO Cleaners (name) VALUES (?)");
@@ -70,10 +70,10 @@ public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
     }
 
     @Override
-    public void update(Cleaner cleaner) {
+    public void updateEntity(Cleaner cleaner) {
         try {
             conn = connectionPool.getConnection();
-            pr = conn.prepareStatement("Update Cleaners SET name=? WHERE id=?");
+            pr = conn.prepareStatement("UPDATE Cleaners SET name=? WHERE id=?");
             pr.setString(1, cleaner.getName());
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
@@ -88,7 +88,7 @@ public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
     }
 
     @Override
-    public void remove(int id) {
+    public void removeEntity(int id) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Cleaners WHERE id=?");
@@ -107,7 +107,7 @@ public class CleanerDAO extends ConnectionToDAO implements IBaseDAO<Cleaner> {
     }
 
     @Override
-    public List<Cleaner> selectAll() {
+    public List<Cleaner> showAllCleaners() {
         List<Cleaner> cleaners = new ArrayList<>();
         try {
             conn = connectionPool.getConnection();

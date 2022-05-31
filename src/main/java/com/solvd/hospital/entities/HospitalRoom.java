@@ -47,4 +47,30 @@ public class HospitalRoom {
     public void setHospitalTreatment(HospitalTreatment hospitalTreatment) {
         this.hospitalTreatment = hospitalTreatment;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HospitalRoom)) return false;
+
+        HospitalRoom that = (HospitalRoom) o;
+
+        if (id != that.id) return false;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + number;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HospitalRoom{" +
+                "id=" + id +
+                ", number=" + number +
+                '}';
+    }
 }

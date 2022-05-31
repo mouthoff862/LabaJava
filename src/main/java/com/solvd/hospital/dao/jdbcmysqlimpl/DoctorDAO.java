@@ -1,6 +1,7 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
-import com.solvd.hospital.dao.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IDoctorDAO;
 import com.solvd.hospital.entities.Doctor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class DoctorDAO implements IBaseDAO<Doctor> {
+public class DoctorDAO implements IDoctorDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(DoctorDAO.class);
     private Connection conn = null;
@@ -33,7 +34,7 @@ public class DoctorDAO implements IBaseDAO<Doctor> {
     }
 
     @Override
-    public Doctor getById(int id) {
+    public Doctor getEntityById(int id) {
         Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -68,7 +69,7 @@ public class DoctorDAO implements IBaseDAO<Doctor> {
     }
 
     @Override
-    public void insert(Doctor doctor) {
+    public void createEntity(Doctor doctor) {
         Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -97,7 +98,7 @@ public class DoctorDAO implements IBaseDAO<Doctor> {
     }
 
     @Override
-    public void update(Doctor doctor) {
+    public void updateEntity(Doctor doctor) {
         Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -126,7 +127,7 @@ public class DoctorDAO implements IBaseDAO<Doctor> {
     }
 
     @Override
-    public void remove(int id) {
+    public void removeEntity(int id) {
         Doctor d = new Doctor();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -154,7 +155,7 @@ public class DoctorDAO implements IBaseDAO<Doctor> {
     }
 
     @Override
-    public List<Doctor> selectAll() {
+    public List<Doctor> showAllDoctors() {
         List<Doctor> doctors = new ArrayList<>();
         Doctor doc = new Doctor();
         try {

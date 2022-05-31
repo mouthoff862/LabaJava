@@ -28,4 +28,29 @@ public class Diagnosis {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Diagnosis)) return false;
+
+        Diagnosis diagnosis = (Diagnosis) o;
+
+        if (id != diagnosis.id) return false;
+        return name != null ? name.equals(diagnosis.name) : diagnosis.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnosis{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

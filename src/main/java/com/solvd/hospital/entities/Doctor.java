@@ -67,4 +67,36 @@ public class Doctor {
     public void setPatientCharts(List<PatientChart> patientCharts) {
         this.patientCharts = patientCharts;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Doctor)) return false;
+
+        Doctor doctor = (Doctor) o;
+
+        if (id != doctor.id) return false;
+        if (age != doctor.age) return false;
+        if (name != null ? !name.equals(doctor.name) : doctor.name != null) return false;
+        return position != null ? position.equals(doctor.position) : doctor.position == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (position != null ? position.hashCode() : 0);
+        result = 31 * result + age;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", position='" + position + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

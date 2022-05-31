@@ -1,6 +1,7 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
-import com.solvd.hospital.dao.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IPatientDAO;
 import com.solvd.hospital.entities.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class PatientDAO implements IBaseDAO<Patient> {
+public class PatientDAO implements IPatientDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(PatientDAO.class);
     private Connection conn = null;
@@ -33,7 +34,7 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public Patient getById(int id) {
+    public Patient getEntityById(int id) {
         Patient p = new Patient();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -68,7 +69,7 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public void insert(Patient patient) {
+    public void createEntity(Patient patient) {
         Patient p = new Patient();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -94,7 +95,7 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public void update(Patient patient) {
+    public void updateEntity(Patient patient) {
         Patient p = new Patient();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -120,7 +121,7 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public void remove(int id) {
+    public void removeEntity(int id) {
         Patient p = new Patient();
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -144,7 +145,7 @@ public class PatientDAO implements IBaseDAO<Patient> {
     }
 
     @Override
-    public List<Patient> selectAll() {
+    public List<Patient> showAllPatients() {
         List<Patient> patients = new ArrayList<>();
         Patient p = new Patient();
         try {

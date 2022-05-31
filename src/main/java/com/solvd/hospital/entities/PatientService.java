@@ -29,6 +29,24 @@ public class PatientService {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PatientService)) return false;
+
+        PatientService that = (PatientService) o;
+
+        if (id != that.id) return false;
+        return serviceName != null ? serviceName.equals(that.serviceName) : that.serviceName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (serviceName != null ? serviceName.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "PatientService{" +
                 "id=" + id +

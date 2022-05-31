@@ -38,4 +38,32 @@ public class Check {
         this.prices = prices;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Check)) return false;
+
+        Check check = (Check) o;
+
+        if (id != check.id) return false;
+        if (patients != null ? !patients.equals(check.patients) : check.patients != null) return false;
+        return prices != null ? prices.equals(check.prices) : check.prices == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (patients != null ? patients.hashCode() : 0);
+        result = 31 * result + (prices != null ? prices.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Check{" +
+                "id=" + id +
+                ", patients=" + patients +
+                ", prices=" + prices +
+                '}';
+    }
 }

@@ -100,6 +100,28 @@ public class Patient {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Patient)) return false;
+
+        Patient patient = (Patient) o;
+
+        if (id != patient.id) return false;
+        if (age != patient.age) return false;
+        if (name != null ? !name.equals(patient.name) : patient.name != null) return false;
+        return email != null ? email.equals(patient.email) : patient.email == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + age;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Patient{" +
                 "id=" + id +

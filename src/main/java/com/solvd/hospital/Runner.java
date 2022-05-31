@@ -1,10 +1,6 @@
 package com.solvd.hospital;
 
-import com.solvd.hospital.dao.IBaseDAO;
-import com.solvd.hospital.dao.mybatisimpl.DoctorDAOImpl;
-import com.solvd.hospital.dao.mybatisimpl.PatientDaoImpl;
 import com.solvd.hospital.entities.*;
-import com.solvd.hospital.parsing.JacksonRunner;
 import com.solvd.hospital.parsing.JaxbToWrite;
 import com.solvd.hospital.parsing.models.Chart;
 import org.apache.logging.log4j.LogManager;
@@ -37,15 +33,9 @@ public class Runner {
         //       LOGGER.info(p.toString());
         //   }
 
-        DoctorDAOImpl d = new DoctorDAOImpl();
-        Doctor doctor = new Doctor();
-        doctor.setName("Andrew");
-        doctor.setPosition("Therapist");
-        doctor.setAge(45);
-        d.update(doctor);
         // marshalJaxb();
-       // JacksonRunner.jsonMarshalling();
-       // JacksonRunner.jsonUnmarshalling();
+        // JacksonRunner.jsonMarshalling();
+        // JacksonRunner.jsonUnmarshalling();
     }
 
 

@@ -2,7 +2,7 @@ package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.connector.ConnectionPool;
 import com.solvd.hospital.connector.ConnectionToDAO;
-import com.solvd.hospital.dao.IBaseDAO;
+import com.solvd.hospital.dao.interfaces.IPatientServiceDAO;
 import com.solvd.hospital.entities.PatientService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientServiceDAO extends ConnectionToDAO implements IBaseDAO<PatientService> {
+public class PatientServiceDAO extends ConnectionToDAO implements IPatientServiceDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(PatientServiceDAO.class);
     private ConnectionPool connectionPool = getConnectionPool();
@@ -24,7 +24,7 @@ public class PatientServiceDAO extends ConnectionToDAO implements IBaseDAO<Patie
     PatientService service = new PatientService();
 
     @Override
-    public PatientService getById(int id) {
+    public PatientService getEntityById(int id) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("SELECT * FROM Patient_Services WHERE id = ?");
@@ -50,7 +50,7 @@ public class PatientServiceDAO extends ConnectionToDAO implements IBaseDAO<Patie
     }
 
     @Override
-    public void insert(PatientService patientService) {
+    public void createEntity(PatientService patientService) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("INSERT INTO Patient_Services (name) VALUES (?)");
@@ -70,7 +70,7 @@ public class PatientServiceDAO extends ConnectionToDAO implements IBaseDAO<Patie
     }
 
     @Override
-    public void update(PatientService patientService) {
+    public void updateEntity(PatientService patientService) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("Update Patient_Services SET service_name=? WHERE id=?");
@@ -88,7 +88,7 @@ public class PatientServiceDAO extends ConnectionToDAO implements IBaseDAO<Patie
     }
 
     @Override
-    public void remove(int id) {
+    public void removeEntity(int id) {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Patient_Services WHERE id=?");
@@ -107,7 +107,7 @@ public class PatientServiceDAO extends ConnectionToDAO implements IBaseDAO<Patie
     }
 
     @Override
-    public List<PatientService> selectAll() {
+    public List<PatientService> showAllPatientServices() {
         List<PatientService> services = new ArrayList<>();
         try {
             conn = connectionPool.getConnection();

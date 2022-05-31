@@ -53,6 +53,28 @@ public class Therapy {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Therapy)) return false;
+
+        Therapy therapy = (Therapy) o;
+
+        if (id != therapy.id) return false;
+        if (patient != null ? !patient.equals(therapy.patient) : therapy.patient != null) return false;
+        if (nurse != null ? !nurse.equals(therapy.nurse) : therapy.nurse != null) return false;
+        return medicine != null ? medicine.equals(therapy.medicine) : therapy.medicine == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (patient != null ? patient.hashCode() : 0);
+        result = 31 * result + (nurse != null ? nurse.hashCode() : 0);
+        result = 31 * result + (medicine != null ? medicine.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Therapy{" +
                 "id=" + id +

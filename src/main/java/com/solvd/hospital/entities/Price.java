@@ -40,6 +40,26 @@ public class Price {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Price)) return false;
+
+        Price priceOne = (Price) o;
+
+        if (id != priceOne.id) return false;
+        if (price != priceOne.price) return false;
+        return patientServices != null ? patientServices.equals(priceOne.patientServices) : priceOne.patientServices == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + price;
+        result = 31 * result + (patientServices != null ? patientServices.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Price{" +
                 "id=" + id +

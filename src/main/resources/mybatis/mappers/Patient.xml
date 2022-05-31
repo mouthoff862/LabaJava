@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hospital.dao.mybatisimpl.PatientDaoImpl">
+    <resultMap id="patintmap" type="com.solvd.hospital.entities.Patient">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="age" property="age"/>
+    </resultMap>
+    <update id="update" parameterType="com.solvd.hospital.entities.Patient">
+        update Patients set name=#{name},email=#{email},age=#{age}, where id= #{id}
+    </update>
+    <insert id="insert" parameterType="com.solvd.hospital.entities.Patient">
+        insert into Patients(name,email,age)VALUES(#{name},#{email},#{age})
+    </insert>
+    <select id="getById" resultMap="patientmap">
+        select * from Patients
+    </select>
+    <delete id="delete" parameterType="com.solvd.hospital.entities.Patient">
+        delete from Patients where id= #{id}
+    </delete>
+</mapper>

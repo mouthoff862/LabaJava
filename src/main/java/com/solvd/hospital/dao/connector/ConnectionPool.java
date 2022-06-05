@@ -1,4 +1,4 @@
-package com.solvd.hospital.connector;
+package com.solvd.hospital.dao.connector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

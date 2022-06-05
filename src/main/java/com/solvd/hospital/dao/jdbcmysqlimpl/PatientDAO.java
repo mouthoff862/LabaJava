@@ -1,145 +1,112 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
-import com.solvd.hospital.dao.interfaces.IBaseDAO;
+import com.solvd.hospital.dao.connector.ConnectionPool;
 import com.solvd.hospital.dao.interfaces.IPatientDAO;
 import com.solvd.hospital.entities.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+
+
+import static com.solvd.hospital.dao.connector.ConnectionToDAO.getConnectionPool;
 
 public class PatientDAO implements IPatientDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(PatientDAO.class);
-    private Connection conn = null;
+    private ConnectionPool connectionPool = getConnectionPool();
+    private Connection conn;
     private ResultSet rs = null;
     private PreparedStatement pr = null;
-    private static Properties properties = new Properties();
-    private String url = "db.url";
-    private String username = "db.username";
-    private String password = "db.password";
-
-    static {
-        try {
-            FileInputStream file = new FileInputStream("D:/laba/src/main/resourses/db.properties");
-            properties.load(file);
-        } catch (IOException e) {
-            LOGGER.info(e.getMessage());
-        }
-    }
+    Patient patient = new Patient();
 
     @Override
     public Patient getEntityById(int id) {
-        Patient p = new Patient();
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = connectionPool.getConnection();
             pr = conn.prepareStatement("SELECT * FROM Patients WHERE id = ?");
             pr.setInt(1, id);
             pr.execute();
             rs = pr.getResultSet();
             while (rs.next()) {
-                p.setId(rs.getInt("id"));
-                p.setName(rs.getString("name"));
-                p.setEmail(rs.getString("email"));
-                p.setAge(rs.getInt("age"));
+                patient.setId(rs.getInt("id"));
+                patient.setName(rs.getString("name"));
+                patient.setEmail(rs.getString("email"));
+                patient.setAge(rs.getInt("age"));
             }
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem with GET ENTITY BY ID", e);
         } finally {
+            connectionPool.releaseConnection(conn);
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (pr != null) {
-                    pr.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.info(ex.getMessage());
+                if (rs == null) rs.close();
+                if (pr == null) pr.close();
+            } catch (SQLException e) {
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
-        return p;
+        return patient;
     }
 
     @Override
     public void createEntity(Patient patient) {
-        Patient p = new Patient();
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = connectionPool.getConnection();
             pr = conn.prepareStatement("INSERT INTO Patients (name, email, age) VALUES (?, ?, ?)");
             pr.setString(1, rs.getString("name"));
             pr.setString(2, rs.getString("email"));
             pr.setInt(3, rs.getInt("age"));
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to create entity", e);
         } finally {
+            connectionPool.releaseConnection(conn);
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (pr != null) {
-                    pr.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.info(ex.getMessage());
+                if (rs == null) rs.close();
+                if (pr == null) pr.close();
+            } catch (SQLException e) {
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
 
     @Override
     public void updateEntity(Patient patient) {
-        Patient p = new Patient();
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = connectionPool.getConnection();
             pr = conn.prepareStatement("UPDATE Patients SET name=? email=? age=? WHERE id=?");
             pr.setString(1, patient.getName());
-            pr.setString(2, patient.getEmail());
-            pr.setInt(3, patient.getAge());
-            pr.executeUpdate();
+            pr.setString(2, rs.getString("email"));
+            pr.setInt(3, rs.getInt("age"));
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to update entity");
         } finally {
+            connectionPool.releaseConnection(conn);
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (pr != null) {
-                    pr.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.info(ex.getMessage());
+                if (pr == null) pr.close();
+            } catch (SQLException e) {
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
 
     @Override
     public void removeEntity(int id) {
-        Patient p = new Patient();
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Patients WHERE id=?");
             pr.setInt(1, rs.getInt("id"));
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to remove entity", e);
         } finally {
+            connectionPool.releaseConnection(conn);
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (pr != null) {
-                    pr.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.info(ex.getMessage());
+                if (pr == null) pr.close();
+            } catch (SQLException e) {
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -147,36 +114,31 @@ public class PatientDAO implements IPatientDAO {
     @Override
     public List<Patient> showAllPatients() {
         List<Patient> patients = new ArrayList<>();
-        Patient p = new Patient();
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = connectionPool.getConnection();
             pr = conn.prepareStatement("SELECT * FROM Patients");
             pr.execute();
             rs = pr.getResultSet();
             while (rs.next()) {
-                p.setId(rs.getInt("id"));
-                p.setName(rs.getString("name"));
-                p.setEmail(rs.getString("email"));
-                p.setAge(rs.getInt("age"));
-                patients.add(p);
+                patient.setId(rs.getInt("id"));
+                patient.setName(rs.getString("name"));
+                patient.setEmail(rs.getString("email"));
+                patient.setAge(rs.getInt("age"));
+                patients.add(patient);
+                LOGGER.info("Here is a list of patients: " + patients + " ");
             }
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to show a list of patients", e);
         } finally {
+            connectionPool.releaseConnection(conn);
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-                if (pr != null) {
-                    pr.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException ex) {
-                LOGGER.info(ex.getMessage());
+                if (rs == null) rs.close();
+                if (pr == null) pr.close();
+            } catch (SQLException e) {
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
         return patients;
     }
 }
+

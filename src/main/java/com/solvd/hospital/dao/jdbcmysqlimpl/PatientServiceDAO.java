@@ -1,7 +1,7 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
-import com.solvd.hospital.connector.ConnectionPool;
-import com.solvd.hospital.connector.ConnectionToDAO;
+import com.solvd.hospital.dao.connector.ConnectionPool;
+import com.solvd.hospital.dao.connector.ConnectionToDAO;
 import com.solvd.hospital.dao.interfaces.IPatientServiceDAO;
 import com.solvd.hospital.entities.PatientService;
 import org.apache.logging.log4j.LogManager;
@@ -36,14 +36,14 @@ public class PatientServiceDAO extends ConnectionToDAO implements IPatientServic
                 service.setServiceName(rs.getString("service_name"));
             }
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to get entity by id", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
         return service;
@@ -57,14 +57,14 @@ public class PatientServiceDAO extends ConnectionToDAO implements IPatientServic
             pr.setString(1, rs.getString("service_name"));
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to create entity", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -76,13 +76,13 @@ public class PatientServiceDAO extends ConnectionToDAO implements IPatientServic
             pr = conn.prepareStatement("Update Patient_Services SET service_name=? WHERE id=?");
             pr.setString(1, service.getServiceName());
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to update entity", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -95,13 +95,13 @@ public class PatientServiceDAO extends ConnectionToDAO implements IPatientServic
             pr.setInt(1, rs.getInt("id"));
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to remove entity", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -118,16 +118,17 @@ public class PatientServiceDAO extends ConnectionToDAO implements IPatientServic
                 service.setId(rs.getInt("id"));
                 service.setServiceName(rs.getString("service_name"));
                 services.add(service);
+                LOGGER.info("Here is a list of patient services: " + services + " ");
             }
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to show a list of patient services", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
         return services;

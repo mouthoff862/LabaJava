@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.hospital.dao.interfaces.IPatientServiceDAO">
+    <resultMap id="result" type="com.solvd.hospital.entities.PatientService">
+        <id column="id" property="id"/>
+        <result column="service_name" property="service_name"/>
+    </resultMap>
+    <update id="updateService" parameterType="com.solvd.hospital.entities.PatientService">
+        update patient_services set service_name=#{service_name} where id=#{id}
+    </update>
+    <insert id="createService" parameterType="com.solvd.hospital.entities.PatientService">
+        insert into patient_services(service_name)
+        values(#{service_name})
+    </insert>
+    <select id="showPatientServices" resultMap="result">
+        select * from patient_services
+    </select>
+    <delete id="removeService" parameterType="com.solvd.hospital.entities.PatientService">
+        delete from patient_services where id= #{id}
+    </delete>
+    <select id="getServiceById" parameterType="com.solvd.hospital.entities.PatientService">
+        select from patient_services where id = #{id}
+    </select>
+</mapper>

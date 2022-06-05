@@ -1,4 +1,4 @@
-package com.solvd.hospital.connector;
+package com.solvd.hospital.dao.connector;
 
 public class ConnectionToDAO {
 

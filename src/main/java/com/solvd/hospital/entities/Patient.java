@@ -7,6 +7,7 @@ public class Patient {
     private String name;
     private String email;
     private int age;
+    private String address;
     private PatientChart patientChart;
     private List<Therapy> therapies;
     private List<HospitalTreatment> hospitalTreatments;
@@ -18,6 +19,13 @@ public class Patient {
 
     public Patient(int id) {
         this.id = id;
+    }
+
+    public Patient(String name, String email, int age, String address) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.address = address;
     }
 
     public Patient(int id, String name, String email, int age) {
@@ -97,6 +105,14 @@ public class Patient {
 
     public void setChecks(List<Check> checks) {
         this.checks = checks;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

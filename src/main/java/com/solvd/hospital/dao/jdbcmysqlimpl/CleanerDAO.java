@@ -1,7 +1,7 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
-import com.solvd.hospital.connector.ConnectionPool;
-import com.solvd.hospital.connector.ConnectionToDAO;
+import com.solvd.hospital.dao.connector.ConnectionPool;
+import com.solvd.hospital.dao.connector.ConnectionToDAO;
 import com.solvd.hospital.dao.interfaces.ICleanerDAO;
 import com.solvd.hospital.entities.Cleaner;
 import org.apache.logging.log4j.LogManager;
@@ -36,14 +36,14 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
                 cleaner.setName(rs.getString("name"));
             }
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem with GET ENTITY BY ID", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
         return cleaner;
@@ -57,14 +57,14 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
             pr.setString(1, rs.getString("name"));
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to create entity");
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -76,13 +76,13 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
             pr = conn.prepareStatement("UPDATE Cleaners SET name=? WHERE id=?");
             pr.setString(1, cleaner.getName());
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to update entity");
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -95,13 +95,13 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
             pr.setInt(1, rs.getInt("id"));
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.info("There was a problem to remove entity", e);
         } finally {
             connectionPool.releaseConnection(conn);
             try {
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
     }
@@ -127,7 +127,7 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
+                LOGGER.info("There was a problem in finally block", e);
             }
         }
         return cleaners;

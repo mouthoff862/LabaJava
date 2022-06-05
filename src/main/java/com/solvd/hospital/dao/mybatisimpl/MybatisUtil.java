@@ -1,40 +1,35 @@
 package com.solvd.hospital.dao.mybatisimpl;
 
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.Reader;
 
 public class MybatisUtil {
-    private static SqlSessionFactory sessionFactory;
-    private SqlSession session;
+    private static final Logger LOGGER = LogManager.getLogger(MybatisUtil.class);
+    private static SqlSessionFactory factory;
+
+    private MybatisUtil() {
+    }
 
     static {
-        String resource = (System.getProperty("user.dir") + "/src/main/resources/mybatis-config.xml");
-        InputStream inputStream = null;
+        Reader reader = null;
+
         try {
-            inputStream = Resources.getResourceAsStream(resource);
+            reader = Resources.getResourceAsReader("mybatis-config.xml");
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info(e);
         }
-        sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        factory = new SqlSessionFactoryBuilder().build(reader);
     }
 
-    public static SqlSessionFactory getSqlsessionfactory() {
-        return sessionFactory;
+    public static SqlSessionFactory getSqlSessionFactory() {
+        return factory;
     }
 
-    public static SqlSession getSession() {
-        return sessionFactory.openSession(false);
-    }
-
-    public void closeSession(SqlSession session) {
-        if (session != null) {
-            session.close();
-            session = null;
-        }
-    }
 }

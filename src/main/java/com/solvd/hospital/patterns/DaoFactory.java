@@ -4,23 +4,25 @@ import com.solvd.hospital.dao.interfaces.IBaseDAO;
 import com.solvd.hospital.dao.mybatisimpl.*;
 import com.solvd.hospital.entities.*;
 
-public class DaoFactory {
+import java.util.Locale;
+
+public class DaoFactory extends AbstractFactory {
     public static IBaseDAO<?> getDAO(String dao) {
-        dao = dao.toUpperCase();
+        dao = dao.toLowerCase();
         switch(dao) {
-            case "doctorDAO":
+            case "doctordao":
                 IBaseDAO<Doctor> doctorIBaseDAO = new DoctorDAO();
                 return doctorIBaseDAO;
-            case "patientDAO":
+            case "patientdao":
                 IBaseDAO<Patient> patientIBaseDAO = new PatientDAO();
                 return patientIBaseDAO;
-            case "cleanerDAO":
+            case "cleanerdao":
                 IBaseDAO<Cleaner> cleanerIBaseDAO = new CleanerDAO();
                 return cleanerIBaseDAO;
-            case "medicineDAO":
+            case "medicinedao":
                 IBaseDAO<Medicine> medicineIBaseDAO = new MedicineDAO();
                 return medicineIBaseDAO;
-            case "patientServiseDAO":
+            case "patientservisedao":
                 IBaseDAO<PatientService> patientServiceIBaseDAO = new PatientServiceDAO();
                 return patientServiceIBaseDAO;
         }

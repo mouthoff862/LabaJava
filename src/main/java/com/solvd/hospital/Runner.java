@@ -26,7 +26,7 @@ public class Runner {
     private static final Logger LOGGER = LogManager.getLogger(Runner.class);
 
     public static void main(String[] args) {
-
+        //There is a method of jaxb:
         //    String file = (System.getProperty("user.dir") + "/src/main/resources/hospital.xml");
         //    List<Patient> patientList = parserForFile(file);
         //    for (Patient p : patientList) {
@@ -34,6 +34,8 @@ public class Runner {
         //   }
 
         // marshalJaxb();
+
+        //Jackson:
         // JacksonRunner.jsonMarshalling();
         // JacksonRunner.jsonUnmarshalling();
     }

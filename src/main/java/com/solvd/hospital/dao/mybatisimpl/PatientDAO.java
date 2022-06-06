@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class PatientDAO implements IPatientDAO {
-    private final static Logger LOGGER = LogManager.getLogger(PatientDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(PatientDAO.class);
 
     @Override
     public Patient getEntityById(int id) {
@@ -53,11 +53,14 @@ public class PatientDAO implements IPatientDAO {
 
     @Override
     public List<Patient> showAllPatients() {
-        List<Patient> patients;
-        try (SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession()) {
+        List<Patient> patients = null;
+        try {
+            SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession();
             IPatientServiceDAO patientDAO = sqlSession.getMapper(IPatientServiceDAO.class);
             patients = sqlSession.selectList("showPatients");
             LOGGER.info(patients);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return patients;
     }

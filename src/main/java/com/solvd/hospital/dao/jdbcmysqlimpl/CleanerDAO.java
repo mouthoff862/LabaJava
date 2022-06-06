@@ -1,7 +1,6 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.dao.connector.ConnectionPool;
-import com.solvd.hospital.dao.connector.ConnectionToDAO;
 import com.solvd.hospital.dao.interfaces.ICleanerDAO;
 import com.solvd.hospital.entities.Cleaner;
 import org.apache.logging.log4j.LogManager;
@@ -14,10 +13,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
+public class CleanerDAO implements ICleanerDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(CleanerDAO.class);
-    private ConnectionPool connectionPool = getConnectionPool();
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private Connection conn;
     private ResultSet rs = null;
     private PreparedStatement pr = null;
@@ -35,11 +34,12 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
                 cleaner.setId(rs.getInt("id"));
                 cleaner.setName(rs.getString("name"));
             }
+            LOGGER.info("Here is a cleaner (found by id)" + cleaner);
         } catch (SQLException e) {
             LOGGER.info("There was a problem with GET ENTITY BY ID", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
@@ -54,13 +54,14 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("INSERT INTO Cleaners (name) VALUES (?)");
-            pr.setString(1, rs.getString("name"));
+            pr.setString(1, cleaner.getName());
             pr.executeUpdate();
+            LOGGER.info("Here is the cleaner (created): " + cleaner);
         } catch (SQLException e) {
             LOGGER.info("There was a problem to create entity");
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
@@ -75,11 +76,12 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("UPDATE Cleaners SET name=? WHERE id=?");
             pr.setString(1, cleaner.getName());
+            LOGGER.info("Here is the cleaner (updated)" + cleaner);
         } catch (SQLException e) {
             LOGGER.info("There was a problem to update entity");
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                connectionPool.releaseConnection(conn);
                 if (pr == null) pr.close();
             } catch (SQLException e) {
                 LOGGER.info("There was a problem in finally block", e);
@@ -92,13 +94,14 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Cleaners WHERE id=?");
-            pr.setInt(1, rs.getInt("id"));
+            pr.setInt(1, id);
             pr.executeUpdate();
+            LOGGER.info("Cleaner was removed!");
         } catch (SQLException e) {
             LOGGER.info("There was a problem to remove entity", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                connectionPool.releaseConnection(conn);
                 if (pr == null) pr.close();
             } catch (SQLException e) {
                 LOGGER.info("There was a problem in finally block", e);
@@ -119,11 +122,12 @@ public class CleanerDAO extends ConnectionToDAO implements ICleanerDAO {
                 cleaner.setName(rs.getString("name"));
                 cleaners.add(cleaner);
             }
+            LOGGER.info("Here is the list of cleaners:" + cleaners + " ");
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {

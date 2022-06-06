@@ -1,7 +1,6 @@
 package com.solvd.hospital.dao.jdbcmysqlimpl;
 
 import com.solvd.hospital.dao.connector.ConnectionPool;
-import com.solvd.hospital.dao.connector.ConnectionToDAO;
 import com.solvd.hospital.dao.interfaces.IMedicineDAO;
 import com.solvd.hospital.entities.Medicine;
 import org.apache.logging.log4j.LogManager;
@@ -14,10 +13,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
+public class MedicineDAO implements IMedicineDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(MedicineDAO.class);
-    private ConnectionPool connectionPool = getConnectionPool();
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private Connection conn;
     private ResultSet rs = null;
     private PreparedStatement pr = null;
@@ -39,8 +38,8 @@ public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
         } catch (SQLException e) {
             LOGGER.info("You cannot find entity by id.", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
@@ -61,8 +60,8 @@ public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
         } catch (SQLException e) {
             LOGGER.info("You cannot INSERT into entity", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {
@@ -81,8 +80,8 @@ public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
         } catch (SQLException e) {
             LOGGER.info("There was a problem to UPDATE entity", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (pr == null) pr.close();
             } catch (SQLException e) {
                 LOGGER.info("There was a problem in finally block", e);
@@ -95,13 +94,13 @@ public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Medicines WHERE id=?");
-            pr.setInt(1, rs.getInt("id"));
+            pr.setInt(1, id);
             pr.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info("There was a problem to DELETE entity");
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (pr == null) pr.close();
             } catch (SQLException e) {
                 LOGGER.info("There was a problem in finally block", e);
@@ -127,8 +126,8 @@ public class MedicineDAO extends ConnectionToDAO implements IMedicineDAO {
         } catch (SQLException e) {
             LOGGER.info(e.getMessage());
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {

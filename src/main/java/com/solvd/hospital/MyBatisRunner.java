@@ -1,13 +1,10 @@
 package com.solvd.hospital;
 
 import com.solvd.hospital.dao.interfaces.IDoctorDAO;
-import com.solvd.hospital.dao.interfaces.IMedicineDAO;
 import com.solvd.hospital.dao.interfaces.IPatientDAO;
 import com.solvd.hospital.dao.mybatisimpl.DoctorDAO;
-import com.solvd.hospital.dao.mybatisimpl.MedicineDAO;
 import com.solvd.hospital.dao.mybatisimpl.PatientDAO;
 import com.solvd.hospital.entities.Doctor;
-import com.solvd.hospital.entities.Medicine;
 import com.solvd.hospital.entities.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +19,11 @@ public class MyBatisRunner {
         ipatientDAO.createEntity(patient);
         ipatientDAO.updateEntity(updatePatient);
         ipatientDAO.showAllPatients();
+    }
 
+    private static void showAllPatients() {
+        IPatientDAO iPatientDAO = new PatientDAO();
+        iPatientDAO.showAllPatients();
     }
 
     private static void runDoctorDAO() {
@@ -37,6 +38,7 @@ public class MyBatisRunner {
     public static void main(String[] args) {
         MyBatisRunner.runPatientDAO();
         MyBatisRunner.runDoctorDAO();
+        MyBatisRunner.showAllPatients();
     }
 
 }

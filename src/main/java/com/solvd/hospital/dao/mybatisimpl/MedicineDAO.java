@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class MedicineDAO implements IMedicineDAO {
-    private final static Logger LOGGER = LogManager.getLogger(MedicineDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(MedicineDAO.class);
 
     @Override
     public Medicine getEntityById(int id) {

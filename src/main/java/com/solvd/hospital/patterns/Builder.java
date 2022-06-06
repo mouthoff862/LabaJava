@@ -3,7 +3,6 @@ package com.solvd.hospital.patterns;
 import com.solvd.hospital.entities.Patient;
 
 public class Builder {
-    private int id;
     private String name;
     private String email;
     private int age;
@@ -12,20 +11,11 @@ public class Builder {
     public Builder() {
     }
 
-    public Builder(int id, String name, String email, int age, String address) {
-        this.id = id;
+    public Builder(String name, String email, int age, String address) {
         this.name = name;
         this.email = email;
         this.age = age;
         this.address = address;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

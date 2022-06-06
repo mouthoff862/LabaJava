@@ -10,12 +10,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.solvd.hospital.dao.connector.ConnectionToDAO.getConnectionPool;
-
 public class DoctorDAO implements IDoctorDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(DoctorDAO.class);
-    private ConnectionPool connectionPool = getConnectionPool();
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private Connection conn;
     private ResultSet rs = null;
     private PreparedStatement pr = null;
@@ -35,11 +33,12 @@ public class DoctorDAO implements IDoctorDAO {
                     doc.setPosition(rs.getString("position"));
                     doc.setAge(rs.getInt("age"));
                 }
+                LOGGER.info("Here is the doctor (found by id): " + doc);
             } catch (SQLException e) {
                 LOGGER.info("There was a problem with GET ENTITY BY ID", e);
             } finally {
-                connectionPool.releaseConnection(conn);
                 try {
+                    if (conn != null) connectionPool.releaseConnection(conn);
                     if (rs == null) rs.close();
                     if (pr == null) pr.close();
                 } catch (SQLException e) {
@@ -54,15 +53,16 @@ public class DoctorDAO implements IDoctorDAO {
             try {
                 conn = connectionPool.getConnection();
                 pr = conn.prepareStatement("INSERT INTO Doctors (name, position, age) VALUES (?, ?, ?)");
-                pr.setString(1, rs.getString("name"));
-                pr.setString(2, rs.getString("position"));
-                pr.setInt(3, rs.getInt("age"));
+                pr.setString(1, doc.getName());
+                pr.setString(2, doc.getPosition());
+                pr.setInt(3, doc.getAge());
                 pr.executeUpdate();
+                LOGGER.info("The doctor was created");
             } catch (SQLException e) {
                 LOGGER.info("There was a problem to create entity", e);
             } finally {
-                connectionPool.releaseConnection(conn);
                 try {
+                    if (conn != null) connectionPool.releaseConnection(conn);
                     if (rs == null) rs.close();
                     if (pr == null) pr.close();
                 } catch (SQLException e) {
@@ -77,13 +77,14 @@ public class DoctorDAO implements IDoctorDAO {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("UPDATE Doctors SET name=? position=? age=? WHERE id=?");
             pr.setString(1, doc.getName());
-            pr.setString(2, rs.getString("position"));
-            pr.setInt(3, rs.getInt("age"));
+            pr.setString(2, doc.getPosition());
+            pr.setInt(3, doc.getAge());
+            LOGGER.info("The doctor was updated" + doc);
         } catch (SQLException e) {
             LOGGER.info("There was a problem to update entity", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (pr == null) pr.close();
             } catch (SQLException e) {
                 LOGGER.info("There was a problem in finally block", e);
@@ -96,13 +97,14 @@ public class DoctorDAO implements IDoctorDAO {
         try {
             conn = connectionPool.getConnection();
             pr = conn.prepareStatement("DELETE FROM Doctors WHERE id=?");
-            pr.setInt(1, rs.getInt("id"));
+            pr.setInt(1, id);
             pr.executeUpdate();
+            LOGGER.info("The doctor was deleted");
         } catch (SQLException e) {
             LOGGER.info("There was a problem to remove entity", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (pr == null) pr.close();
             } catch (SQLException e) {
                 LOGGER.info("There was a problem in finally block", e);
@@ -129,8 +131,8 @@ public class DoctorDAO implements IDoctorDAO {
         } catch (SQLException e) {
             LOGGER.info("There was a problem to add list", e);
         } finally {
-            connectionPool.releaseConnection(conn);
             try {
+                if (conn != null) connectionPool.releaseConnection(conn);
                 if (rs == null) rs.close();
                 if (pr == null) pr.close();
             } catch (SQLException e) {

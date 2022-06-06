@@ -3,7 +3,8 @@ package com.solvd.hospital.dao.connector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,87 +15,73 @@ import java.util.Properties;
 
 public class ConnectionPool {
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-    private static Properties prop = new Properties();
-    private static String url;
-    private static String user;
-    private static String password;
-    private static int INITIAL_POOL_SIZE = 10;
-    private static List<Connection> connectionPool = new ArrayList<>(INITIAL_POOL_SIZE);
-    private List<Connection> usedConnections = new ArrayList<>();
     private static ConnectionPool instance = null;
+    private static final int INITIAL_POOL_SIZE = 5;
+    private static List<Connection> freeConnections = new ArrayList<>();
+    private static List<Connection> usedConnections = new ArrayList<>();
 
-    static {
-        try {
-            prop = new Properties();
-            prop.load(new FileReader(System.getProperty("user.dir") + "/src/main/resources/db.properties"));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-        }
-    }
 
     private ConnectionPool() {
     }
 
-    private ConnectionPool(String url, String user, String password, List<Connection> pool) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
-        connectionPool = pool;
-    }
-
-    public static ConnectionPool create(String url, String user, String password) {
-        List<Connection> pool = new ArrayList<>(INITIAL_POOL_SIZE);
-        try {
-            pool = new ArrayList<>(INITIAL_POOL_SIZE);
-            for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
-                pool.add(createConnection(url, user, password));
-            }
-        } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
-        }
-        return new ConnectionPool(url, user, password, pool);
-    }
-
-    public static ConnectionPool getInstance() {
+    // It's an example of SingleTon Pattern
+    public static synchronized ConnectionPool getInstance() {
         if (instance == null) {
-            instance = ConnectionPool.create(prop.getProperty("db.url"), prop.getProperty("db.username"), prop.getProperty("db.password"));
+            instance = new ConnectionPool();
+            create();
         }
         return instance;
     }
 
-    public Connection getConnection() {
-        Connection connection = connectionPool.remove(connectionPool.size() - 1);
+    public static void create() {
+        Properties p = new Properties();
+        FileInputStream fileInputStream;
+        try {
+            fileInputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/db.properties");
+            p.load(fileInputStream);
+            fileInputStream.close();
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage());
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+        }
+
+        String url = p.getProperty("db.url");
+        String userName = p.getProperty("db.username");
+        String password = p.getProperty("db.password");
+
+        for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
+            freeConnections.add(createConnection(url, userName, password));
+        }
+    }
+
+    public synchronized Connection getConnection() {
+        Connection connection = freeConnections.remove(freeConnections.size() - 1);
         usedConnections.add(connection);
         return connection;
     }
 
-    public boolean releaseConnection(Connection connection) {
-        connectionPool.add(connection);
-        return usedConnections.remove(connection);
+    public synchronized void releaseConnection(Connection connection) throws SQLException {
+        if (connection != null) {
+            if (usedConnections.remove(connection)) {
+                freeConnections.add(connection);
+            } else {
+                throw new SQLException("There was a problem with releasing connection.");
+            }
+        }
     }
 
-    private static Connection createConnection(String url, String user, String password) throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+    private static Connection createConnection(String url, String user, String password) {
+        try {
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+        return null;
     }
 
     public int getSize() {
-        return connectionPool.size() + usedConnections.size();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public static List<Connection> getConnectionPool() {
-        return connectionPool;
+        return freeConnections.size() + usedConnections.size();
     }
 
 }

@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class CleanerDAO implements ICleanerDAO {
-    private final static Logger LOGGER = LogManager.getLogger(CleanerDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(CleanerDAO.class);
 
     @Override
     public Cleaner getEntityById(int id) {

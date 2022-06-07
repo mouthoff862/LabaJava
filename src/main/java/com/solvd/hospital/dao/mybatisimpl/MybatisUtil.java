@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
 
 public class MybatisUtil {
     private static final Logger LOGGER = LogManager.getLogger(MybatisUtil.class);
@@ -17,15 +17,15 @@ public class MybatisUtil {
     }
 
     static {
-        Reader reader = null;
-
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = null;
         try {
-            reader = Resources.getResourceAsReader("mybatis-config.xml");
-        } catch (IOException e) {
-            LOGGER.info(e);
-        }
+            inputStream = Resources.getResourceAsStream(resource);
 
-        factory = new SqlSessionFactoryBuilder().build(reader);
+        } catch (IOException e) {
+            LOGGER.info("There was some problem with getting resources in MyBatisUtil", e);
+        }
+        factory = new SqlSessionFactoryBuilder().build(inputStream);
     }
 
     public static SqlSessionFactory getSqlSessionFactory() {

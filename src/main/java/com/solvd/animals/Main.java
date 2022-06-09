@@ -150,7 +150,7 @@ public class Main {
         try {
             Set<String> set = new HashSet<String>();
             String s = "Count of words";
-            String text = FileUtils.readFileToString(new File("D:/laba/src/main/resourses/lion.txt"), "UTF-8");
+            String text = FileUtils.readFileToString(new File(System.getProperty("user.dir") + "src/main/resources/lion.txt"), "UTF-8");
             String[] words = StringUtils.split(text);
             words = StringUtils.stripAll(words, ",.;!$#�?'%&/()=");
             for (int i = 0; i < words.length; i++) {
@@ -159,7 +159,7 @@ public class Main {
             for (String word : set) {
                 s = s + "\n" + word + "-> " + String.valueOf(StringUtils.countMatches(text, word));
             }
-            FileUtils.writeStringToFile(new File("D:/laba/src/main/resourses/lionResult4.txt"), s, "UTF-8");
+            FileUtils.writeStringToFile(new File(System.getProperty("user.dir") + "src/main/resources/lionResult4.txt"), s, "UTF-8");
         } catch (FileNotFoundException ex) {
             LOGGER.info(ex.getMessage());
         } catch (IOException e) {

@@ -23,7 +23,7 @@ public class MybatisUtil {
             inputStream = Resources.getResourceAsStream(resource);
 
         } catch (IOException e) {
-            LOGGER.info("There was some problem with getting resources in MyBatisUtil", e);
+            LOGGER.info("There was some problem with getting resources in MyBatisUtil.class", e);
         }
         factory = new SqlSessionFactoryBuilder().build(inputStream);
     }
